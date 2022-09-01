@@ -6,7 +6,7 @@ You can clearly see the difference in the following clip. The patched version is
 
 https://user-images.githubusercontent.com/2428251/187879166-74e973e3-aa49-40e3-b629-45d68843c4c9.mp4
 
-To play the flicker-free version, see the section on [playing flicker-free Commodore 64 Elite](playing-flicker-free-commodore-64-elite).
+To play the flicker-free version, see the section on [playing flicker-free Commodore 64 Elite](#playing-flicker-free-commodore-64-elite).
 
 To read about how the patch weaves its magic, see the section on [how the patch works](#how-the-patch-works).
 
@@ -18,7 +18,7 @@ If you are interested in building and applying the patch yourself, see the secti
 
   * [A note on licences, copyright etc.](#user-content-a-note-on-licences-copyright-etc)
 
-* [Playing flicker-free Commodore 64 Elite](playing-flicker-free-commodore-64-elite)
+* [Playing flicker-free Commodore 64 Elite](#playing-flicker-free-commodore-64-elite)
 
 * [How the patch works](#how-the-patch-works)
 
