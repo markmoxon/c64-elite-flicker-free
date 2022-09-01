@@ -58,7 +58,9 @@ The flicker-free version of Commodore 64 Elite is available in two versions: NTS
 
 To play the patched game in an emulator or on a real machine, you can download disk images for both versions from the [flicker-free-disks](flicker-free-disks) folder. These have been tested in the VICE emulator, but should also work in other emulators and on real machines. If you don't know which one to use, try the PAL version first, as that seems to be the default for most emulators.
 
-Loading commander files should work in exactly the same way as in the unpatched GMA86 version; the only changes in the patch are graphical.
+Loading commander files should work in exactly the same way as in the unpatched GMA86 version; the only changes in the patch are graphical, as you can see in this clip of Lave station (with the flicker-free version on the left, and the original version on the right):
+
+https://user-images.githubusercontent.com/2428251/187880030-1ea634fa-5588-4724-941a-4229b63b59d6.mp4
 
 ## How the patch works
 
