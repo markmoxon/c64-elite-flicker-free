@@ -21,8 +21,15 @@
 # Run this script by changing directory to the folder containing the disk files
 # and running the script with "python elite-modify.py"
 #
-# This modification script works with the elite[firebird_1986](pal)(v040486).g64
-# disk image
+# This modification script works with the following disk images from the
+# Commodore 64 Preservation Project:
+#
+#   * elite[firebird_1986](pal)(v040486).g64
+#   * elite[firebird_1986](ntsc)(v060186)(!).g64
+#
+# You can find the Commodore 64 Preservation Project on archive.org here:
+#
+# https://archive.org/details/C64_Preservation_Project_10th_Anniversary_Collection
 #
 # ******************************************************************************
 

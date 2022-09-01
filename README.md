@@ -34,7 +34,7 @@ If you are interested in building and applying the patch yourself, see the secti
 
 Commodore 64 Elite was written by Ian Bell and David Braben and published by Firebird, and is copyright &copy; D. Braben and I. Bell 1985.
 
-The game disks in this repository are similar to those released on [Ian Bell's personal website](http://www.elitehomepage.org/), but to ensure accuracy to the released versions, they're actually the versions from the [Commodore 64 Preservation Project on archive.org](https://archive.org/download/C64_Preservation_Project_10th_Anniversary_Collection) (as it turns out that the disk images on Ian Bell's site differ from the official versions).
+The game disks in this repository are similar to those released on [Ian Bell's personal website](http://www.elitehomepage.org/), but to ensure accuracy to the released versions, they're actually the versions from the [Commodore 64 Preservation Project on archive.org](https://archive.org/details/C64_Preservation_Project_10th_Anniversary_Collection) (as it turns out that the disk images on Ian Bell's site differ from the official versions).
 
 The commentary is copyright &copy; Mark Moxon. Any misunderstandings or mistakes in the documentation are entirely my fault.
 
@@ -56,11 +56,15 @@ My hope is that the educational and non-profit intentions of this repository wil
 
 The flicker-free version of Commodore 64 Elite is available in two versions: NTSC and PAL. These are both based on the GMA86 release of Elite from 1986.
 
-To play the patched game in an emulator or on a real machine, you can download disk images for both versions from the [flicker-free-disks](flicker-free-disks) folder. These have been tested in the VICE emulator, but should also work in other emulators and on real machines. If you don't know which one to use, try the PAL version first, as that seems to be the default for most emulators.
+To play the patched game in an emulator or on a real machine, you can download disk images for both versions from the [flicker-free-disks](flicker-free-disks) folder, or just click the following links:
 
-Loading commander files should work in exactly the same way as in the unpatched GMA86 version; the only changes in the patch are graphical, as you can see in this clip of Lave station (with the flicker-free version on the left, and the original version on the right):
+* [Download flicker-free .d64 disk image (PAL)](https://github.com/markmoxon/c64-elite-flicker-free/raw/master/flicker-free-disks/c64-elite-flicker-free-pal.d64)
 
-https://user-images.githubusercontent.com/2428251/187880030-1ea634fa-5588-4724-941a-4229b63b59d6.mp4
+* [Download flicker-free .d64 disk image (NTSC)](https://github.com/markmoxon/c64-elite-flicker-free/raw/master/flicker-free-disks/c64-elite-flicker-free-ntsc.d64)
+
+These have been tested in the VICE emulator, and in various online emulators, but they should also work on a real machine. If you don't know which one to use, try the PAL version first, as that seems to be the default for most emulators.
+
+Loading commander files should work in exactly the same way as in the unpatched GMA86 version; the only changes in the patch are graphical
 
 ## How the patch works
 
@@ -70,29 +74,35 @@ The 1986 releases of the BBC Master and Apple II versions of Elite saw a marked 
 
 In the original versions of Elite, such as those for the BBC Micro, Acorn Electron and Commodore 64, ships were animated on-screen by first erasing them entirely, and then redrawing them in their new positions. The improved algorithm in the BBC Master and Apple II versions is similar, but instead of erasing the entire ship and then redrawing a whole new ship, it erases one line of the old ship and immediately redraws one line of the new ship, repeating the process until the whole ship gets redrawn, one line at a time. This interleaving of the line-drawing process results in much smoother ship graphics, and without adding any extra steps, so it doesn't affect the game speed.
 
-Unfortunately planets are unaffected by the patch, as they use a completely different routine, so they still flicker. However ships, stations, asteroids and missiles are much improved.
+Note that this doesn't apply to Elite on Z80-based computers, such as the ZX Spectrum and Amstrad CPC. These were complete rewrites that have totally different drawing routines, and they don't suffer from flicker.
 
 For more information on the flicker-free algorithm, see these deep dives on [flicker-free ship drawing](https://www.bbcelite.com/deep_dives/flicker-free_ship_drawing.html) and [backporting the flicker-free algorithm](https://www.bbcelite.com/deep_dives/backporting_the_flicker-free_algorithm.html) in my BBC Micro Elite project.
+
+Unfortunately planets are unaffected by the patch, as they use a completely different routine, so they still flicker. However ships, stations, asteroids and missiles are much improved, as you can see in this clip of Lave station (with the flicker-free version on the left, and the original version on the right):
+
+https://user-images.githubusercontent.com/2428251/187880030-1ea634fa-5588-4724-941a-4229b63b59d6.mp4
 
 ### The patching process
 
 In order to patch Elite to use the new algorithm, we have to do the following:
 
-* Use c1451 to extract the game binaries from the original disk image
+* Use c1451 to extract the game binaries from the original Commodore 64 .g64 disk images
 
-* Use BeebAsm to assemble the additional code that's required for flicker-free ships
+* Use BeebAsm to assemble the additional code that's required for flicker-free ships (we use BeebAsm as the extra code is taken from the BBC Master version of Elite)
 
-* Use Python to inject this new code into the game binaries and adjust the code in a number of places, and to disable any copy protection in the original binaries
+* Use Python to inject this new code into the game binaries, adjusting the code accordingly, and to disable any copy protection in the original binaries
 
 * Use c1451 to create a new disk image containing the flicker-free binaries
 
-To find out more about the exact steps in this process, check out the following files, which contain lots of comments about how the process works.
+To find out more about the exact steps in this process, check out the following files, which contain lots of comments about how the process works:
 
-* The [build.sh](build.sh) script controls the build. Read this for an overview of the patching process, which is described above.
+* The [build.sh](build.sh) script controls the build. Read this for an overview of the patching process, as described above.
 
-* The [elite-flicker-free.asm](src/elite-flicker-free.asm) file assembles and saves out a number of code binaries. These contain larger blocks of code that implements the flicker-free algorithm, which are saved as binary files that are ready to be injected into the game binary to implement the patch.
+* The [elite-flicker-free.asm](src/elite-flicker-free.asm) file assembles and saves out a number of code binaries. These contain larger blocks of code that implement the flicker-free algorithm, which are saved as binary files that are ready to be injected into the game binary to implement the patch.
 
-* The [elite-modify.py](src/elite-modify.py) modifies the game binary. It does this by loading the binary into memory, patching it by injecting the output from BeebAsm, and making a number of modifications to the code before saving out the modified version. It also disables any copy protection so the resulting
+* The [elite-modify.py](src/elite-modify.py) script modifies the game binary. It does this by loading the binary into memory, patching it by injecting the output from BeebAsm, making a number of other modifications to the code, and saving out the modified version. It also disables any copy protection from the original disk.
+
+The above files are best read alongside the code changes described in the article on [backporting the flicker-free algorithm](https://www.bbcelite.com/deep_dives/backporting_the_flicker-free_algorithm.html).
 
 ## Building the patch
 
@@ -108,13 +118,13 @@ If you want to patch Commodore 64 Elite to the flicker-free version yourself, or
 
 * c1652 from the VICE emulator, which can be downloaded from the [VICE site](https://vice-emu.sourceforge.io).
 
-Let's look at how to patch Commodore 64 Elite to get those flicker-free ships.
+Given these, let's look at how to patch Commodore 64 Elite to get those flicker-free ships.
 
 ### Applying the patch
 
 The patching process is implemented by a bash script called `build.sh` in the root folder of the repository. If any of BeebAsm, Python or c1541 are not on your path, then you can either fix this, or you can edit the `$beebasm`, `$python` or `$c1541` variables in the first three lines of `build.sh` to point to their locations.
 
-You also need to change directory to the repository folder (i.e. the same folder as `build.sh`), and make the script executable.
+You also need to change directory to the repository folder (i.e. the same folder as `build.sh`), and make sure the `build.sh` script is executable.
 
 All being well, doing the following:
 
@@ -126,7 +136,7 @@ chmod a+x build.sh
 
 will produce two disk images in the `compiled-game-disks` folder that contain the patched game, which you can then load into an emulator or real machine.
 
-The build process also verifies the build against binaries that are known to be correct, and BeebAsm log files and interim binaries are saved in the `work` folder.
+The build process also verifies the build against binaries that are known to be correct, and BeebAsm log files and interim binaries are saved in the `work` folder. This is useful for debugging.
 
 ---
 
