@@ -2,11 +2,11 @@
 
 This repository contains a patch for Commodore 64 Elite that drastically improves the quality of the graphics. It does this by removing flicker from the ship-drawing routines.
 
-You can clearly see the difference between the patched version on the left, and the original version on the right:
+You can clearly see the difference in the following clip. The patched version is on the left, and the original version is on the right:
 
 https://user-images.githubusercontent.com/2428251/187879166-74e973e3-aa49-40e3-b629-45d68843c4c9.mp4
 
-To play the flicker-free version, see the section on [playing flicker-free Commodore 64 Elite](playing-flicker-free-commodore-64-elite]).
+To play the flicker-free version, see the section on [playing flicker-free Commodore 64 Elite](playing-flicker-free-commodore-64-elite).
 
 To read about how the patch weaves its magic, see the section on [how the patch works](#how-the-patch-works).
 
@@ -18,12 +18,12 @@ If you are interested in building and applying the patch yourself, see the secti
 
   * [A note on licences, copyright etc.](#user-content-a-note-on-licences-copyright-etc)
 
-* [Playing flicker-free Commodore 64 Elite](playing-flicker-free-commodore-64-elite])
+* [Playing flicker-free Commodore 64 Elite](playing-flicker-free-commodore-64-elite)
 
 * [How the patch works](#how-the-patch-works)
 
-  * [A better algorithm](a-better-algorithm)
-  * [The patching process](the-patching-process)
+  * [A better algorithm](#a-better-algorithm)
+  * [The patching process](#the-patching-process)
 
 * [Building the patch](#building-the-patch)
 
@@ -34,11 +34,13 @@ If you are interested in building and applying the patch yourself, see the secti
 
 Commodore 64 Elite was written by Ian Bell and David Braben and published by Firebird, and is copyright &copy; D. Braben and I. Bell 1985.
 
-The game disks in this repository are similar to those released on [Ian Bell's personal website](http://www.elitehomepage.org/), but to ensure accuracy to the released versions, they're actually the versions from the [Commodore 64 Preservation Project on archive.org](https://archive.org/details/C64_Preservation_Project_10th_Anniversary_Collection) (as it turns out that the disk images on Ian Bell's site differ from the official versions).
+The game disks in this repository are very similar to those released on [Ian Bell's personal website](http://www.elitehomepage.org/), but to ensure accuracy to the released versions, I've used disk images from the [Commodore 64 Preservation Project](https://archive.org/details/C64_Preservation_Project_10th_Anniversary_Collection) (it turns out that the disk images on Ian Bell's site differ slightly from the official versions).
 
 The commentary is copyright &copy; Mark Moxon. Any misunderstandings or mistakes in the documentation are entirely my fault.
 
-Huge thanks are due to the original authors for not only creating such an important piece of my childhood, but also for releasing the source code for us to play with. You can find more information about my Elite project in the [accompanying website's project page](https://www.bbcelite.com/about_site/about_this_project.html).
+Huge thanks are due to the original authors for not only creating such an important piece of my childhood, but also for releasing the source code for us to play with. Also, a big thumbs up to Kroc Camen for his epic [Elite Harmless](https://github.com/Kroc/elite-harmless) project, which was a really useful reference when exploring the C64 binaries, and to the gurus in this [Lemon64 forum thread](https://www.lemon64.com/forum/viewtopic.php?t=67762&start=90) for their sage advice.
+
+You can find more information about my own Elite project in the [accompanying website](https://www.bbcelite.com).
 
 ### A note on licences, copyright etc.
 
