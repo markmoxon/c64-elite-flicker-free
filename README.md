@@ -2,6 +2,10 @@
 
 This repository contains a patch for Commodore 64 Elite that drastically improves the quality of the graphics. It does this by removing flicker from the ship-drawing routines.
 
+You can clearly see the difference between the patched version on the left, and the original version on the right:
+
+https://user-images.githubusercontent.com/2428251/187879166-74e973e3-aa49-40e3-b629-45d68843c4c9.mp4
+
 To play the flicker-free version, see the section on [playing flicker-free Commodore 64 Elite](playing-flicker-free-commodore-64-elite]).
 
 To read about how the patch weaves its magic, see the section on [how the patch works](#how-the-patch-works).
