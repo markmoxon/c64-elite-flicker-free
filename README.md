@@ -146,7 +146,7 @@ All being well, doing the following:
 ./build.sh
 ```
 
-will produce two disk images in the [`compiled-game-disks`](compiled-game-disks) folder. These disk images contain the patched game, one for PAL and one for NTSC, which you can then load into an emulator or real machine.
+will produce two disk images in the [`flicker-free-disks`](flicker-free-disks) folder. These disk images contain the patched game, one for PAL and one for NTSC, which you can then load into an emulator or real machine.
 
 The build process also verifies the results against binaries that are known to be correct, which helps with debugging. Any BeebAsm log files and interim binaries are saved in the `work` folder during compilation, which can be useful if you want to investigate the modified binary files from each of the build steps.
 
