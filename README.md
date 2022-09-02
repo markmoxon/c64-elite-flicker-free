@@ -70,7 +70,7 @@ To play the flicker-free version of Commodore 64 Elite, you need to download a d
 
 [See here](http://unusedino.de/ec64/technical/misc/vic656x/pal-ntsc.html) for a brief technical summary on the differences between PAL and NTSC on the Commodore 64.
 
-These images have been tested in the [VICE emulator](https://vice-emu.sourceforge.io) and in a number of online emulators, such as [C64 online](https://c64online.com/c64-online-emulator/) and [Virtual Consoles](https://virtualconsoles.com/online-emulators/c64/). They should also work on real machines. If you don't know which one to use, try the PAL version first, as that seems to be the default setting for most emulators. Both disk images are based on the GMA86 releases of Elite from 1986.
+These images have been tested in the [VICE emulator](https://vice-emu.sourceforge.io) and in a number of online emulators, such as [C64 online](https://c64online.com/c64-online-emulator/) and [Virtual Consoles](https://virtualconsoles.com/online-emulators/c64/). They should also work on real machines. If you don't know which one to use, try the PAL version first, as that seems to be the default setting for most emulators. Both disk images are based on the GMA86 release of Elite from 1986.
 
 Saved commander files should work in exactly the same way as in the original GMA86 version; the only changes in the patch are graphical, and they don't affect gameplay in any way.
 
