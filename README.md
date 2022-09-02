@@ -2,7 +2,7 @@
 
 This repository contains a patch for Commodore 64 Elite that drastically improves the quality of the graphics. It does this by removing flicker from the ship-drawing routines.
 
-The code in the patch has been backported from the BBC Master version of Elite, so the flicker-free version is still 100% a Bell/Braben game, it's just one they never made themselves.
+The code in the patch has been backported from the BBC Master version of Elite, so it is 100% Bell & Braben code that's making its first appearance on the Commodore 64.
 
 You can see the difference it makes in the following clip. The patched version is on the left, and the original version is on the right:
 
