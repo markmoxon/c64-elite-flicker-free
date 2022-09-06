@@ -75,21 +75,21 @@ To play the flicker-free version of Commodore 64 Elite, you need to download a d
 
 [See here](http://unusedino.de/ec64/technical/misc/vic656x/pal-ntsc.html) for a brief technical summary on the differences between PAL and NTSC on the Commodore 64.
 
-All these images have been tested in the [VICE emulator](https://vice-emu.sourceforge.io) and in a number of online emulators, such as [C64 online](https://c64online.com/c64-online-emulator/) and [Virtual Consoles](https://virtualconsoles.com/online-emulators/c64/). They should also work on real machines. If you don't know which one to use, try the PAL version first, as that seems to be the default setting for most emulators. The disk images are based on the GMA86 release of Elite from 1986.
+All these images have been tested in the [VICE emulator](https://vice-emu.sourceforge.io) and in a number of online emulators, such as [C64 online](https://c64online.com/c64-online-emulator/) and [Virtual Consoles](https://virtualconsoles.com/online-emulators/c64/). They should also work on real machines. If you don't know which one to use, try the PAL version first, as that seems to be the default setting for most emulators.
 
-Saved commander files should work in exactly the same way as in the original GMA86 version; the only changes in the patch are graphical, and they don't affect gameplay in any way.
+The disk images are based on the GMA86 release of Elite from 1986, so saved commander files should work in exactly the same way as in the original GMA86 version. The only changes in the patch are graphical, and they don't affect gameplay in any way.
 
 ## Playing flicker-free Commodore Plus/4 Elite
 
 To play the flicker-free version of Commodore Plus/4 Elite, you can either download a PRG file and load it into an emulator or a real machine, or you can play it online in your browser:
 
-* [Download flicker-free Commodore Plus/4 Elite as a .prg file](https://github.com/markmoxon/c64-elite-flicker-free/raw/master/flicker-free-disks/elite_+4_flicker_free.prg)
+* [Download flicker-free Commodore Plus/4 Elite as a .prg file](https://github.com/markmoxon/c64-elite-flicker-free/raw/master/flicker-free-disks/elite_+4_flicker_free.prg) - this is the best version to use for emulators and real machines
 
-* [Play Commodore Plus/4 Elite in a browser](http://plus4world.powweb.com/play/elite_+4_flicker_free)
+* [Play Commodore Plus/4 Elite in your browser](http://plus4world.powweb.com/play/elite_+4_flicker_free) - this is the quickest way to get playing
 
 The PRG file has been tested in the [VICE emulator](https://vice-emu.sourceforge.io) and the [YAPE emulator](http://yape.homeserver.hu/). It should also work on real machines.
 
-The Plus/4 version is based on Pigmy's release, so saved commander files should work in exactly the same way as in the original; the only changes in the patch are graphical, and they don't affect gameplay in any way.
+The Plus/4 version is based on Pigmy's release, so saved commander files should work in exactly the same way as in the original. The only changes in the patch are graphical, and they don't affect gameplay in any way.
 
 ## How the patch works
 
@@ -140,7 +140,9 @@ The commentary in these files is best read alongside the code changes, which are
 
 The Commodore Plus/4 version of Elite is an unofficial release of the game that was converted from the Commodore 64 version by Pigmy. You can find lots of information about the game on [Commodore Plus/4 World](http://plus4world.powweb.com/software/Elite_Plus4).
 
-The patching process follows a similar set of steps to the Commodore 64 version, but it operates on a game binary that's already been extracted from Pigmy's original version (thank you to @Kekule1025 for doing this, and for packing the final game up after I'd done my patching). The game runs at a different address to the Commodore 64 version, so the [`elite-flicker-free-plus4.asm`](src/elite-flicker-free-plus4.asm) and [`elite-modify-plus4.py`](src/elite-modify-plus4.py) files modify the code in different places to the Commodore 64 version. Most (though not all) routines run at addresses that are $0900 higher in memory than their Commodore 64 counterparts, so that's why you can see `+ $0900` throughout these files.
+The patching process follows a similar set of steps to the Commodore 64 version, but it operates on a game binary that's already been extracted from Pigmy's original version (thank you to @Kekule1025 for doing this, and for packing the final game up after I'd done my patching). You can access the unencrypted game using a monitor or debugger, by setting an execution breakpoint for address $5100 and loading the original Pigmy version; when the breakpoint is hit, the game will be unencrypted in memory from address $1100 onwards. This is the version that the patch scripts work with.
+
+The game runs at a different address to the Commodore 64 version, so the [`elite-flicker-free-plus4.asm`](src/elite-flicker-free-plus4.asm) and [`elite-modify-plus4.py`](src/elite-modify-plus4.py) files modify the code in different places to the Commodore 64 version. Most (though not all) routines run at addresses that are $0900 higher in memory than their Commodore 64 counterparts, so that's why you can see `+ $0900` throughout these files.
 
 Also, because the Pigmy version comes with a demo loading screen that takes up a fair amount of extra memory, we can't just tack the flicker-free routines onto the end of the game binary, as we do in the Commodore 64 version. Instead we can put them in the spite area, and specifically over the top of the two Trumble sprites, which are not used in the Plus/4 version (the Plus/4 does contain Trumbles, but because the machine does not support hardware sprites, they do not appear on-screen, so the sprite definitions are unused and we can use the space to store the flicker-free routines).
 
