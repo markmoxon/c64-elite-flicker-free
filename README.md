@@ -1,8 +1,8 @@
-# Flicker-free Elite on the Commodore 64
+# Flicker-free Elite on the Commodore 64 and Plus/4
 
-This repository contains a patch for Commodore 64 Elite that drastically improves the quality of the graphics. It does this by removing flicker from the ship-drawing routines.
+This repository contains a patched version of Commodore 64 Elite that drastically improves the quality of the graphics. It does this by removing flicker from the ship-drawing routines. It also contains a patched version for the Commodore Plus/4.
 
-* To play the flicker-free version, see the section on [playing flicker-free Commodore 64 Elite](#playing-flicker-free-commodore-64-elite).
+* To play the flicker-free version, see the section on [playing flicker-free Commodore 64 and Plus/4 Elite](#playing-flicker-free-commodore-64-and-plus4-elite).
 
 * To read about how the patch weaves its magic, see the section on [how the patch works](#how-the-patch-works).
 
@@ -26,7 +26,7 @@ https://user-images.githubusercontent.com/2428251/187879166-74e973e3-aa49-40e3-b
 
   * [A better algorithm](#a-better-algorithm)
   * [The patching process](#the-patching-process)
-  * [Patching the Commodore Plus/4 version][#patching-the-commodore-plus-4-version]
+  * [Patching the Commodore Plus/4 version](#patching-the-commodore-plus4-version)
 
 * [Building the patch](#building-the-patch)
 
@@ -63,7 +63,7 @@ Under GitHub's rules, you have the right to read and fork this repository... but
 
 My hope is that the educational and non-profit intentions of this repository will enable it to stay hosted and available, but the original copyright holders do have the right to ask for it to be taken down, in which case I will comply without hesitation. I do hope, though, that along with the various other disassemblies, commentaries and disk images of Elite, it will remain viable.
 
-## Playing flicker-free Commodore 64 Elite
+## Playing flicker-free Commodore 64 and Plus/4 Elite
 
 To play the flicker-free version of Commodore 64 Elite, you need to download a disk image and load it into an emulator or a real machine. Just like the original game, the flicker-free version is available in two distinct flavours: PAL and NTSC.
 
