@@ -73,11 +73,11 @@ To play the flicker-free version of Commodore 64 Elite, you need to download a d
 
 [See here](http://unusedino.de/ec64/technical/misc/vic656x/pal-ntsc.html) for a brief technical summary on the differences between PAL and NTSC on the Commodore 64.
 
-There is also a version for the Commodore Plus/4, which is based on Pigmy's unofficial version:
+There is also a version for the Commodore Plus/4, which is based on Pigmy's release:
 
 * [Download flicker-free Commodore Plus/4 Elite as a .prg file](https://github.com/markmoxon/c64-elite-flicker-free/raw/master/flicker-free-disks/elite_+4_flicker_free.prg)
 
-All these images have been tested in the [VICE emulator](https://vice-emu.sourceforge.io) and in a number of online emulators, such as [C64 online](https://c64online.com/c64-online-emulator/) and [Virtual Consoles](https://virtualconsoles.com/online-emulators/c64/). They should also work on real machines. If you don't know which one to use, try the PAL version first, as that seems to be the default setting for most emulators. Both disk images are based on the GMA86 release of Elite from 1986.
+All these images have been tested in the [VICE emulator](https://vice-emu.sourceforge.io) and in a number of online emulators, such as [C64 online](https://c64online.com/c64-online-emulator/) and [Virtual Consoles](https://virtualconsoles.com/online-emulators/c64/). They should also work on real machines. If you don't know which one to use, try the PAL version first, as that seems to be the default setting for most emulators. The Commodore 64 disk images are based on the GMA86 release of Elite from 1986, while the Plus/4 version is based on Pigmy's release.
 
 Saved commander files should work in exactly the same way as in the original GMA86 version; the only changes in the patch are graphical, and they don't affect gameplay in any way.
 
@@ -130,7 +130,7 @@ The commentary in these files is best read alongside the code changes, which are
 
 The Commodore Plus/4 version of Elite is an unofficial release of the game that was converted from the Commodore 64 version by Pigmy. You can find lots of information about the game on [Commodore Plus/4 World](http://plus4world.powweb.com/software/Elite_Plus4).
 
-The patching process follows a similar set of steps to the Commodore 64 version, but it operates on a game binary that's already been extracted from Pigmy's original version (thank you to @Kekule1025 for doing this, and for packing the final game up after I'd done my patching). The game runs at a different address to the Commodore 64 version, so the [`elite-flicker-free-plus4.asm`](src/elite-flicker-free-plus4.asm) and `elite-modify-plus4.py`](src/elite-modify-plus4.py) files modify the code in different places to the Commodore 64 version. Most (though not all) routines run at addresses that are $0900 higher in memory than their Commodore 64 counterparts, so that's why you can see `+ $0900` throughout these files.
+The patching process follows a similar set of steps to the Commodore 64 version, but it operates on a game binary that's already been extracted from Pigmy's original version (thank you to @Kekule1025 for doing this, and for packing the final game up after I'd done my patching). The game runs at a different address to the Commodore 64 version, so the [`elite-flicker-free-plus4.asm`](src/elite-flicker-free-plus4.asm) and [`elite-modify-plus4.py`](src/elite-modify-plus4.py) files modify the code in different places to the Commodore 64 version. Most (though not all) routines run at addresses that are $0900 higher in memory than their Commodore 64 counterparts, so that's why you can see `+ $0900` throughout these files.
 
 Also, because the Pigmy version comes with a demo loading screen that takes up a fair amount of extra memory, we can't just tack the flicker-free routines onto the end of the game binary, as we do in the Commodore 64 version. Instead we can put them in the spite area, and specifically over the top of the two Trumble sprites, which are not used in the Plus/4 version (the Plus/4 does contain Trumbles, but because the machine does not support hardware sprites, they do not appear on-screen, and the sprite definitions are unused).
 
@@ -171,7 +171,7 @@ All being well, doing the following:
 ./build.sh
 ```
 
-will produce two disk images in the [`flicker-free-disks`](flicker-free-disks) folder. These disk images contain the patched game, one for PAL and one for NTSC, which you can then load into an emulator or real machine.
+will produce two disk images in the [`flicker-free-disks`](flicker-free-disks) folder, and a PRG for the Commodore Plus/4 in the `work` folder. The disk images contain the patched Commodore 64 game, one for PAL and one for NTSC, which you can then load into an emulator or real machine. The PRG contains the patched Commodore Plus/4 game, ready to be repacked with Pigmy's code.
 
 The build process also verifies the results against binaries that are known to be correct, which helps with debugging. Any BeebAsm log files and interim binaries are saved in the `work` folder during compilation, which can be useful if you want to investigate the modified binary files from each of the build steps.
 
