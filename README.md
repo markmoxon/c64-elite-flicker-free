@@ -2,7 +2,7 @@
 
 This repository contains a patched version of Commodore 64 Elite that drastically improves the quality of the graphics. It does this by removing flicker from the ship-drawing routines. It also contains a patched version for the Commodore Plus/4.
 
-* To play the flicker-free version, see the section on [playing flicker-free Commodore 64 and Plus/4 Elite](#playing-flicker-free-commodore-64-and-plus4-elite).
+* To play the flicker-free version, see the sections on [playing flicker-free Commodore 64 Elite](#playing-flicker-free-commodore-64-elite) and [playing flicker-free Commodore Plus/4 Elite](#playing-flicker-free-commodore-plus4-elite).
 
 * To read about how the patch weaves its magic, see the section on [how the patch works](#how-the-patch-works).
 
@@ -21,6 +21,8 @@ https://user-images.githubusercontent.com/2428251/187879166-74e973e3-aa49-40e3-b
   * [A note on licences, copyright etc.](#user-content-a-note-on-licences-copyright-etc)
 
 * [Playing flicker-free Commodore 64 Elite](#playing-flicker-free-commodore-64-elite)
+
+* [Playing flicker-free Commodore Plus/4 Elite](#playing-flicker-free-commodore-plus4-elite)
 
 * [How the patch works](#how-the-patch-works)
 
@@ -63,7 +65,7 @@ Under GitHub's rules, you have the right to read and fork this repository... but
 
 My hope is that the educational and non-profit intentions of this repository will enable it to stay hosted and available, but the original copyright holders do have the right to ask for it to be taken down, in which case I will comply without hesitation. I do hope, though, that along with the various other disassemblies, commentaries and disk images of Elite, it will remain viable.
 
-## Playing flicker-free Commodore 64 and Plus/4 Elite
+## Playing flicker-free Commodore 64 Elite
 
 To play the flicker-free version of Commodore 64 Elite, you need to download a disk image and load it into an emulator or a real machine. Just like the original game, the flicker-free version is available in two distinct flavours: PAL and NTSC.
 
@@ -73,13 +75,21 @@ To play the flicker-free version of Commodore 64 Elite, you need to download a d
 
 [See here](http://unusedino.de/ec64/technical/misc/vic656x/pal-ntsc.html) for a brief technical summary on the differences between PAL and NTSC on the Commodore 64.
 
-There is also a version for the Commodore Plus/4, which is based on Pigmy's release:
+All these images have been tested in the [VICE emulator](https://vice-emu.sourceforge.io) and in a number of online emulators, such as [C64 online](https://c64online.com/c64-online-emulator/) and [Virtual Consoles](https://virtualconsoles.com/online-emulators/c64/). They should also work on real machines. If you don't know which one to use, try the PAL version first, as that seems to be the default setting for most emulators. The disk images are based on the GMA86 release of Elite from 1986.
+
+Saved commander files should work in exactly the same way as in the original GMA86 version; the only changes in the patch are graphical, and they don't affect gameplay in any way.
+
+## Playing flicker-free Commodore Plus/4 Elite
+
+To play the flicker-free version of Commodore Plus/4 Elite, you can either download a PRG file and load it into an emulator or a real machine, or you can play it online in your browser:
 
 * [Download flicker-free Commodore Plus/4 Elite as a .prg file](https://github.com/markmoxon/c64-elite-flicker-free/raw/master/flicker-free-disks/elite_+4_flicker_free.prg)
 
-All these images have been tested in the [VICE emulator](https://vice-emu.sourceforge.io) and in a number of online emulators, such as [C64 online](https://c64online.com/c64-online-emulator/) and [Virtual Consoles](https://virtualconsoles.com/online-emulators/c64/). They should also work on real machines. If you don't know which one to use, try the PAL version first, as that seems to be the default setting for most emulators. The Commodore 64 disk images are based on the GMA86 release of Elite from 1986, while the Plus/4 version is based on Pigmy's release.
+* [Play Commodore Plus/4 Elite in a browser](http://plus4world.powweb.com/play/elite_+4_flicker_free)
 
-Saved commander files should work in exactly the same way as in the original GMA86 version; the only changes in the patch are graphical, and they don't affect gameplay in any way.
+The PRG file has been tested in the [VICE emulator](https://vice-emu.sourceforge.io) and the [YAPE emulator](http://yape.homeserver.hu/). It should also work on real machines.
+
+The Plus/4 version is based on Pigmy's release, so saved commander files should work in exactly the same way as in the original; the only changes in the patch are graphical, and they don't affect gameplay in any way.
 
 ## How the patch works
 
