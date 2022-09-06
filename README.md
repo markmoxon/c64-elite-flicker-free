@@ -49,7 +49,7 @@ The commentary is copyright &copy; Mark Moxon. Any misunderstandings or mistakes
 
 Huge thanks are due to the original authors for not only creating such an important piece of my childhood, but also for releasing the source code for us to play with. Also, a big thumbs up to Kroc Camen for his epic [Elite Harmless](https://github.com/Kroc/elite-harmless) project, which is a really useful reference for anyone exploring the C64 binaries. Finally, thanks to the gurus in this [Lemon64 forum thread](https://www.lemon64.com/forum/viewtopic.php?t=67762&start=90) for their sage advice.
 
-For the Commodore Plus/4 version, I am indebted to @Kekule1025 on Twitter, who extracted the original game from Pigmy's binaries, and wrapped it back up once I had finished adding the patch. Thank you Kekule.
+For the Commodore Plus/4 version, I am indebted to [@Kekule1025](https://twitter.com/Kekule1025) on Twitter, who extracted the original game from Pigmy's binaries, and wrapped it back up once I had finished adding the patch. Thank you Kekule.
 
 You can find more information about my own Elite project in the [fully documented source code for Elite on the BBC Micro](https://www.bbcelite.com).
 
@@ -140,13 +140,13 @@ The commentary in these files is best read alongside the code changes, which are
 
 The Commodore Plus/4 version of Elite is an unofficial release of the game that was converted from the Commodore 64 version by Pigmy. You can find lots of information about the game on [Commodore Plus/4 World](http://plus4world.powweb.com/software/Elite_Plus4).
 
-The patching process follows a similar set of steps to the Commodore 64 version, but it operates on a game binary that's already been extracted from Pigmy's original version (thank you to @Kekule1025 for doing this, and for packing the final game up after I'd done my patching). You can access the unencrypted game using a monitor or debugger, by setting an execution breakpoint for address $5100 and loading the original Pigmy version; when the breakpoint is hit, the game will be unencrypted in memory from address $1100 onwards. This is the version that the patch scripts work with.
+The patching process follows a similar set of steps to the Commodore 64 version, but it operates on a game binary that's already been extracted from Pigmy's original version (thank you to [@Kekule1025](https://twitter.com/Kekule1025) for doing this, and for packing the final game up after I'd done my patching). You can access the unencrypted game using a monitor or debugger, by setting an execution breakpoint for address $5100 and loading the original Pigmy version; when the breakpoint is hit, the game will be unencrypted in memory from address $1100 onwards. This is the version that the patch scripts work with.
 
 The game runs at a different address to the Commodore 64 version, so the [`elite-flicker-free-plus4.asm`](src/elite-flicker-free-plus4.asm) and [`elite-modify-plus4.py`](src/elite-modify-plus4.py) files modify the code in different places to the Commodore 64 version. Most (though not all) routines run at addresses that are $0900 higher in memory than their Commodore 64 counterparts, so that's why you can see `+ $0900` throughout these files.
 
 Also, because the Pigmy version comes with a demo loading screen that takes up a fair amount of extra memory, we can't just tack the flicker-free routines onto the end of the game binary, as we do in the Commodore 64 version. Instead we can put them in the spite area, and specifically over the top of the two Trumble sprites, which are not used in the Plus/4 version (the Plus/4 does contain Trumbles, but because the machine does not support hardware sprites, they do not appear on-screen, so the sprite definitions are unused and we can use the space to store the flicker-free routines).
 
-The build process for the Plus/4 creates a file called `elite_+4_modified.prg` in the `work` folder that contains the modified game (you can load this into an emulator, and run it with a `SYS 20736` command, as the game code starts at $5100). The downloadable version is wrapped in Pigmy's original demo and packing code, which is a process that is out of the scope of this site (I don't know how @Kekule1025 did it!).
+The build process for the Plus/4 creates a file called `elite_+4_modified.prg` in the `work` folder that contains the modified game (you can load this into an emulator, and run it with a `SYS 20736` command, as the game code starts at $5100). The downloadable version is wrapped in Pigmy's original demo and packing code, which is a process that is out of the scope of this site (I don't know how [@Kekule1025](https://twitter.com/Kekule1025) did it!).
 
 Apart from these differences, the patching process is the same as for the Commodore 64 version.
 
