@@ -39,7 +39,7 @@ $c1541 \
 cd ..
 $python src/crc32.py reference-binaries/ntsc work
 
-# And now, we build the PAL version
+# Next, we build the PAL version
 cd work
 
 # Extract the files from the original disk image
@@ -69,3 +69,19 @@ $c1541 \
 # Report checksums
 cd ..
 $python src/crc32.py reference-binaries/pal work
+
+# And finally we modify the Plus/4 version
+cd work
+
+# Copy the decrypted PRG to the work folder
+cp ../original-disks/elite_+4_unpacked.prg .
+
+# Assemble the additional code required for flicker-free ships
+$beebasm -i ../src/elite-flicker-free-plus4.asm -v > compile.txt
+
+# Modify the main game code
+$python ../src/elite-modify-plus4.py
+
+# Report checksums
+cd ..
+$python src/crc32.py reference-binaries/plus4 work

@@ -59,9 +59,9 @@ XX17    = $009F
 XX4     = $00AD
 XX20    = $00AE
 XX14    = $00FB
-PROJ    = $7D1F
-LL75    = $9FB8
-LL30    = $AB91
+PROJ    = $860F         \ Note, this is not equal to $7D1F + $0900
+LL75    = $9FB8 + $0900
+LL30    = $B49D         \ Note, this is not equal to $AB91 + $0900
 Y       = 72
 
 \ ******************************************************************************
@@ -73,7 +73,7 @@ Y       = 72
 \
 \ ******************************************************************************
 
-ORG $9932
+ORG $9932 + $0900
 
 .SHPPT
 
@@ -147,7 +147,7 @@ ORG $9932
                         \ corresponding old line from the screen, and return
                         \ from the subroutine using a tail call
 
-SAVE "shppt.bin", SHPPT, P%
+SAVE "shppt-plus4.bin", SHPPT, P%
 
 \ ******************************************************************************
 \
@@ -159,7 +159,7 @@ SAVE "shppt.bin", SHPPT, P%
 \
 \ ******************************************************************************
 
-ORG $A15B
+ORG $A15B + $0900
 
 .LL78
 
@@ -195,7 +195,7 @@ ORG $A15B
 
  NOP
 
-SAVE "ll78.bin", LL78, P%
+SAVE "ll78-plus4.bin", LL78, P%
 
 \ ******************************************************************************
 \
@@ -207,7 +207,7 @@ SAVE "ll78.bin", LL78, P%
 \
 \ ******************************************************************************
 
-ORG $A178
+ORG $A178 + $0900
 
 .LL155
 
@@ -261,9 +261,9 @@ ORG $A178
 
  RTS                    \ Return from the subroutine
 
-SAVE "ll155.bin", LL155, P%
+SAVE "ll155-plus4.bin", LL155, P%
 
-ORG $CCE0
+ORG $7240
 
 \ ******************************************************************************
 \
@@ -424,5 +424,5 @@ ORG $CCE0
  JMP LL78               \ Jump down to part 11
 
 
-SAVE "extra.bin", LLX30, P%
+SAVE "extra-plus4.bin", LLX30, P%
 

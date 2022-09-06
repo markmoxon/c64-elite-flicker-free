@@ -26,6 +26,7 @@ https://user-images.githubusercontent.com/2428251/187879166-74e973e3-aa49-40e3-b
 
   * [A better algorithm](#a-better-algorithm)
   * [The patching process](#the-patching-process)
+  * [Patching the Commodore Plus/4 version][#patching-the-commodore-plus-4-version]
 
 * [Building the patch](#building-the-patch)
 
@@ -40,11 +41,13 @@ BBC Master Elite was written by Ian Bell and David Braben and is copyright © Ac
 
 The code in the flicker-free patch was reconstructed from a disassembly of the BBC Master version released on [Ian Bell's personal website](http://www.elitehomepage.org/).
 
-The game disks in this repository are very similar to those released on [Ian Bell's personal website](http://www.elitehomepage.org/), but to ensure accuracy to the released versions, I've used disk images from the [Commodore 64 Preservation Project](https://archive.org/details/C64_Preservation_Project_10th_Anniversary_Collection) (it turns out that the disk images on Ian Bell's site differ slightly from the official versions).
+The Commodore 64 game disks in this repository are very similar to those released on [Ian Bell's personal website](http://www.elitehomepage.org/), but to ensure accuracy to the released versions, I've used disk images from the [Commodore 64 Preservation Project](https://archive.org/details/C64_Preservation_Project_10th_Anniversary_Collection) (it turns out that the disk images on Ian Bell's site differ slightly from the official versions). The Commodore Plus/4 version is based on the disk image from Ian Bell's site.
 
 The commentary is copyright &copy; Mark Moxon. Any misunderstandings or mistakes in the documentation are entirely my fault.
 
 Huge thanks are due to the original authors for not only creating such an important piece of my childhood, but also for releasing the source code for us to play with. Also, a big thumbs up to Kroc Camen for his epic [Elite Harmless](https://github.com/Kroc/elite-harmless) project, which is a really useful reference for anyone exploring the C64 binaries. Finally, thanks to the gurus in this [Lemon64 forum thread](https://www.lemon64.com/forum/viewtopic.php?t=67762&start=90) for their sage advice.
+
+For the Commodore Plus/4 version, I am indebted to @Kekule1025 on Twitter, who extracted the original game from Pigmy's binaries, and wrapped it back up once I had finished adding the patch. Thank you Kekule.
 
 You can find more information about my own Elite project in the [fully documented source code for Elite on the BBC Micro](https://www.bbcelite.com).
 
@@ -70,7 +73,11 @@ To play the flicker-free version of Commodore 64 Elite, you need to download a d
 
 [See here](http://unusedino.de/ec64/technical/misc/vic656x/pal-ntsc.html) for a brief technical summary on the differences between PAL and NTSC on the Commodore 64.
 
-These images have been tested in the [VICE emulator](https://vice-emu.sourceforge.io) and in a number of online emulators, such as [C64 online](https://c64online.com/c64-online-emulator/) and [Virtual Consoles](https://virtualconsoles.com/online-emulators/c64/). They should also work on real machines. If you don't know which one to use, try the PAL version first, as that seems to be the default setting for most emulators. Both disk images are based on the GMA86 release of Elite from 1986.
+There is also a version for the Commodore Plus/4, which is based on Pigmy's unofficial version:
+
+* [Download flicker-free Commodore Plus/4 Elite as a .prg file](https://github.com/markmoxon/c64-elite-flicker-free/raw/master/flicker-free-disks/elite_+4_flicker_free.prg)
+
+All these images have been tested in the [VICE emulator](https://vice-emu.sourceforge.io) and in a number of online emulators, such as [C64 online](https://c64online.com/c64-online-emulator/) and [Virtual Consoles](https://virtualconsoles.com/online-emulators/c64/). They should also work on real machines. If you don't know which one to use, try the PAL version first, as that seems to be the default setting for most emulators. Both disk images are based on the GMA86 release of Elite from 1986.
 
 Saved commander files should work in exactly the same way as in the original GMA86 version; the only changes in the patch are graphical, and they don't affect gameplay in any way.
 
@@ -118,6 +125,18 @@ To find out more about the above steps, take a look at the following files, whic
   * Disabling any copy protection from the original disk
 
 The commentary in these files is best read alongside the code changes, which are described in detail in the article on [backporting the flicker-free algorithm](https://www.bbcelite.com/deep_dives/backporting_the_flicker-free_algorithm.html).
+
+### Patching the Commodore Plus/4 version
+
+The Commodore Plus/4 version of Elite is an unofficial release of the game that was converted from the Commodore 64 version by Pigmy. You can find lots of information about the game on [Commodore Plus/4 World](http://plus4world.powweb.com/software/Elite_Plus4).
+
+The patching process follows a similar set of steps to the Commodore 64 version, but it operates on a game binary that's already been extracted from Pigmy's original version (thank you to @Kekule1025 for doing this, and for packing the final game up after I'd done my patching). The game runs at a different address to the Commodore 64 version, so the [`elite-flicker-free-plus4.asm`](src/elite-flicker-free-plus4.asm) and `elite-modify-plus4.py`](src/elite-modify-plus4.py) files modify the code in different places to the Commodore 64 version. Most (though not all) routines run at addresses that are $0900 higher in memory than their Commodore 64 counterparts, so that's why you can see `+ $0900` throughout these files.
+
+Also, because the Pigmy version comes with a demo loading screen that takes up a fair amount of extra memory, we can't just tack the flicker-free routines onto the end of the game binary, as we do in the Commodore 64 version. Instead we can put them in the spite area, and specifically over the top of the two Trumble sprites, which are not used in the Plus/4 version (the Plus/4 does contain Trumbles, but because the machine does not support hardware sprites, they do not appear on-screen, and the sprite definitions are unused).
+
+The build process for the Plus/4 creates a file called `elite_+4_modified.prg` in the `work` folder that contains the modified game (you can load this into an emulator, and run it with a `SYS 20736`' command, as the game code starts at $5100). The downloadable version is wrapped in Pigmy's original demo and packing code, which is a process that is out of the scope of this site (I don't know how @Kekule1025 did it!).
+
+Apart from these differences, the patching process is the same as for the Commodore 64 version.
 
 ## Building the patch
 
