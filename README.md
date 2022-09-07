@@ -1,6 +1,6 @@
 # Flicker-free Elite on the Commodore 64 and Plus/4
 
-This repository contains a patched version of Commodore 64 Elite that drastically improves the quality of the graphics. It does this by removing flicker from the ship-drawing routines (though note that planets still flicker). It also contains a patched version for the Commodore Plus/4.
+This repository contains a patched version of Commodore 64 Elite that drastically improves the quality of the graphics. It does this by removing flicker from the ship-drawing routines (though note that planets still flicker, as that's a different part of the code). It also contains a patched version for the Commodore Plus/4.
 
 * To play the flicker-free version, see the sections on [playing flicker-free Commodore 64 Elite](#playing-flicker-free-commodore-64-elite) and [playing flicker-free Commodore Plus/4 Elite](#playing-flicker-free-commodore-plus4-elite).
 
