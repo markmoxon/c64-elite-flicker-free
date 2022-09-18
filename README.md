@@ -162,7 +162,7 @@ If you want to apply the flicker-free patch to Commodore 64 Elite yourself, or y
 
 * Python. Both versions 2.7 and 3.x should work.
 
-* c1652 from the VICE emulator, which can be downloaded from the [VICE site](https://vice-emu.sourceforge.io).
+* c1541 from the VICE emulator, which can be downloaded from the [VICE site](https://vice-emu.sourceforge.io).
 
 Given these, let's look at how to patch Commodore 64 Elite to get those flicker-free ships.
 
