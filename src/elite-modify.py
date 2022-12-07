@@ -267,7 +267,7 @@ insert_nops(data_block, 0x9FC1, 1)
 
 # LL9 (Part 10)
 #
-# This are the two modifications at LL79.
+# These are the two modifications at LL79.
 #
 # From: LDA (V),Y
 #       TAX

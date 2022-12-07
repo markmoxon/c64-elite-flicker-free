@@ -6,7 +6,7 @@
 #
 # Written by Mark Moxon
 #
-# This script applies flicker-free ship-drawing to Commodore Plus/4} Elite, as
+# This script applies flicker-free ship-drawing to Commodore Plus/4 Elite, as
 # described here:
 #
 # https://www.bbcelite.com/deep_dives/flicker-free_ship_drawing.html
@@ -227,7 +227,7 @@ insert_nops(data_block, 0x9FC1 + 0x900, 1)
 
 # LL9 (Part 10)
 #
-# This are the two modifications at LL79.
+# These are the two modifications at LL79.
 #
 # From: LDA (V),Y
 #       TAX
