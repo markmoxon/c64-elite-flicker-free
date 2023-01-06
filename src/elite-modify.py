@@ -223,7 +223,7 @@ insert_nops(data_block, 0x9F3D, 10)
 #       INY
 #       LDA XX15+1
 #       STA (XX19),Y
-#       INY :
+#       INY
 #       LDA XX15+2
 #       STA (XX19),Y
 #       INY
