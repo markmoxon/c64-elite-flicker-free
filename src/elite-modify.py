@@ -485,7 +485,7 @@ print("[ Save    ] gma6.encrypted")
 load_address = 0x1D00 - 2
 seed = 0x36
 scramble_from = 0x1D00
-scramble_to = 0x1D00 + (0x21D4 - 3)    # File size - 3
+scramble_to = 0x1D00 + 0x21D1
 
 # Set up an array to hold the gma5 binary, so we can modify it
 
@@ -561,7 +561,7 @@ print("[ Save    ] gma5.encrypted")
 load_address = 0x4000 - 2
 seed = 0x8E
 scramble_from = 0x75E4
-scramble_to = 0x865A
+scramble_to = 0x4000 + 0x465A
 
 # Set up an array to hold the gma4 binary, so we can modify it
 
