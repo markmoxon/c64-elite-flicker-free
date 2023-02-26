@@ -44,7 +44,6 @@ GUARD &CE00             \ Guard against assembling over memory used by game
 XX1     = $0009
 INWK    = $0009
 XX19    = $002A
-CNT     = $0030
 K3      = $0035
 K4      = $0043
 XX0     = $0057
@@ -56,6 +55,7 @@ X2      = $006D
 Y2      = $006E
 XX12    = $0071
 XX17    = $009F
+CNT     = $00AA
 XX4     = $00AD
 XX20    = $00AE
 XX14    = $00FB

@@ -31,8 +31,8 @@ $c1541 \
     -write firebird \
     -write gma1.modified gma1 \
     -write gma3 \
-    -write gma4 \
-    -write gma5 \
+    -write gma4.encrypted gma4 \
+    -write gma5.encrypted gma5 \
     -write gma6.encrypted gma6
 
 # Report checksums
@@ -62,8 +62,8 @@ $c1541 \
     -write byebyejulie \
     -write gma1.modified gma1 \
     -write gma3 \
-    -write gma4 \
-    -write gma5 \
+    -write gma4.encrypted gma4 \
+    -write gma5.encrypted gma5 \
     -write gma6.encrypted gma6
 
 # Report checksums
@@ -77,7 +77,7 @@ cd work
 cp ../original-disks/elite_+4_unpacked.prg .
 
 # Assemble the additional code required for flicker-free ships
-$beebasm -i ../src/elite-flicker-free-plus4.asm -v > compile.txt
+$beebasm -i ../src/elite-flicker-free-plus4.asm -v >> compile.txt
 
 # Modify the main game code
 $python ../src/elite-modify-plus4.py
