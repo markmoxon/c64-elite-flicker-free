@@ -1,6 +1,6 @@
 # Flicker-free Elite on the Commodore 64 and Plus/4
 
-This repository contains a patched version of Commodore 64 Elite that drastically improves the quality of the graphics. It does this by removing flicker from the ship-drawing routines (though note that planets still flicker, as that's a different part of the code). It also contains a patched version for the Commodore Plus/4.
+This repository contains a patched version of Commodore 64 Elite that drastically improves the quality of the graphics. It does this by removing most (but not all) of the flicker from the ship-drawing and planet-drawing routines. It also contains a patched version for the Commodore Plus/4.
 
 * To play the flicker-free version, see the sections on [playing flicker-free Commodore 64 Elite](#playing-flicker-free-commodore-64-elite) and [playing flicker-free Commodore Plus/4 Elite](#playing-flicker-free-commodore-plus4-elite).
 
@@ -8,7 +8,7 @@ This repository contains a patched version of Commodore 64 Elite that drasticall
 
 * If you are interested in building and applying the patch yourself, see the section on [building the patch](#building-the-patch).
 
-The code in the patch has been backported from the BBC Master version of Elite, so it is 100% Bell & Braben code that's making its first appearance on the Commodore 64.
+The ship-drawing code in the patch has been backported from the BBC Master version of Elite, so this part is 100% Bell & Braben code that's making its first appearance on the Commodore 64. The improved planet-drawing code is by Mark Moxon, and takes the same algorithm and applies it to the planets, with additional code to reduce flicker even further.
 
 You can see the difference it makes in the following clip. The patched version is on the left, and the original version is on the right:
 
@@ -97,15 +97,15 @@ The Plus/4 version is based on Pigmy's release, so saved commander files should 
 
 The 1986 releases of Elite on the BBC Master and Apple II show a marked improvement in the quality of the wireframe graphics when compared to earlier versions. This is down to an improved algorithm that seriously reduces flicker without slowing down the game.
 
-In the original 1984 and 1985 versions of Elite, such as those for the BBC Micro, Acorn Electron and Commodore 64, ships are animated on-screen by first erasing them entirely, and then redrawing them in their new positions. The improved algorithm in the BBC Master and Apple II versions is similar, but instead of erasing the entire ship and then redrawing a whole new ship, it erases one line of the old ship and immediately redraws one line of the new ship, repeating this process until the whole ship gets redrawn, one line at a time. This interleaving of the line-drawing process results in much smoother ship graphics, and without adding any extra steps, so it doesn't affect the game speed.
-
-Note that this doesn't apply to Elite on Z80-based computers, such as the ZX Spectrum and Amstrad CPC. These were complete rewrites that have totally different drawing routines, and they didn't inherit the flicker of the original 6502 versions.
-
-For more information on the flicker-free algorithm, see these deep dives on [flicker-free ship drawing](https://www.bbcelite.com/deep_dives/flicker-free_ship_drawing.html) and [backporting the flicker-free algorithm](https://www.bbcelite.com/deep_dives/backporting_the_flicker-free_algorithm.html) in my BBC Micro Elite project.
-
-Unfortunately planets are unaffected by the patch, as they use a completely different routine, so they still flicker. However ships, stations, asteroids, missiles and cargo canisters are much improved, as you can see in this clip of Lave station. The patched version is on the left, and the original version is on the right:
+In the original 1984 and 1985 versions of Elite, such as those for the BBC Micro, Acorn Electron and Commodore 64, ships are animated on-screen by first erasing them entirely, and then redrawing them in their new positions. The improved algorithm in the BBC Master and Apple II versions is similar, but instead of erasing the entire ship and then redrawing a whole new ship, it erases one line of the old ship and immediately redraws one line of the new ship, repeating this process until the whole ship gets redrawn, one line at a time. This interleaving of the line-drawing process results in much smoother ship graphics, and without adding any extra steps, so it doesn't affect the game speed. Ships, stations, asteroids, missiles and cargo canisters are much improved, as you can see in this clip of Lave station. The patched version is on the left, and the original version is on the right:
 
 https://user-images.githubusercontent.com/2428251/187880030-1ea634fa-5588-4724-941a-4229b63b59d6.mp4
+
+Note that this fix doesn't apply to Elite on Z80-based computers, such as the ZX Spectrum and Amstrad CPC. These were complete rewrites that have totally different drawing routines, and they didn't inherit the flicker of the original 6502 versions.
+
+Planet flicker is also improved by this patch. Planets use a completely different set of drawing routines to ships, but I have applied the same improved algorithm to the ball line heap, and have added logic that ensures we only erase and redraw lines that move. Planets do still flicker a bit, especially when they are partially off-screen, but there is still a big improvement over the original.
+
+For more information on flicker-free Elite, see the [hacks section of the accompanying website](https://www.bbcelite.com/hacks/flicker-free_elite.html).
 
 ### The patching process
 
@@ -125,16 +125,16 @@ To find out more about the above steps, take a look at the following files, whic
 
 * The [`elite-flicker-free.asm`](src/elite-flicker-free.asm) file is assembled by BeebAsm and produces a number of binary files. These contain the bulk of the code that implements the flicker-free algorithm. These code blocks are saved as binary files that are ready to be injected into the game binary to implement the patch.
 
-* The [`elite-modify.py`](src/elite-modify.py) script modifies the game binary and applies the patch. It does this by:
+* The [`elite-modify.py`](src/elite-modify.py) script modifies the game binaries and applies the patch. It does this by:
 
-  * Loading the main binary into memory
+  * Loading each binary into memory (gma4, gma5 and gma6)
   * Decrypting it
   * Patching it by injecting the output from BeebAsm and making a number of other modifications to the code
   * Encrypting the modified code
   * Saving out the encrypted and modified binary
   * Disabling any copy protection from the original disk
 
-The commentary in these files is best read alongside the code changes, which are described in detail in the article on [backporting the flicker-free algorithm](https://www.bbcelite.com/deep_dives/backporting_the_flicker-free_algorithm.html).
+The commentary in these files is best read alongside the code changes, which are described in the article on [technical information for flicker-free Elite](https://www.bbcelite.com/hacks/flicker-free_elite_technical_information.html).
 
 ### Patching the Commodore Plus/4 version
 
