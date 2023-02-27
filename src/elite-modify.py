@@ -648,6 +648,7 @@ elite_file = open("gma1", "rb")
 data_block.extend(elite_file.read())
 elite_file.close()
 
+print()
 print("[ Read    ] gma1")
 
 if platform == "pal":
