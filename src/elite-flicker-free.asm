@@ -1,6 +1,6 @@
 \ ******************************************************************************
 \
-\ BBC MASTER ELITE GAME SOURCE (FLICKER-FREE ROUTINES)
+\ FLICKER-FREE COMMODORE 64 ELITE
 \
 \ BBC Master Elite was written by Ian Bell and David Braben and is copyright
 \ Acornsoft 1986
