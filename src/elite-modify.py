@@ -370,8 +370,8 @@ print("[ Modify  ] append file extra.bin")
 
 # We now move on to the routines for drawing flicker-free planets
 
-# Set the addresses for the extra routines (LLX30, PATCH1, PATCH2) that we will
-# append to the end of the main game code (where there is a bit of free space)
+# Set the addresses for the extra routines (EraseRestOfPlanet, PATCH4, PATCH5)
+# that we will insert into the sprite area (where there is a bit of free space)
 
 erasep = 0xCD3B
 patch4 = 0x69D0

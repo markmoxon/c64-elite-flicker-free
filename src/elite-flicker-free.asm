@@ -41,7 +41,7 @@ GUARD $CE00             \ Guard against assembling over memory used by game
 \
 \ ******************************************************************************
 
-XX1     = $0009
+XX1     = $0009         \ Variables for flicker-free ships
 INWK    = $0009
 XX19    = $002A
 K3      = $0035
@@ -64,7 +64,7 @@ LL75    = $9FB8
 LL30    = $AB91
 Y       = 72
 
-K       = $0077
+K       = $0077         \ Variables for flicker-free planets
 LSP     = $007E
 K5      = $0085
 K6      = $0089
@@ -547,6 +547,8 @@ SAVE "wpls2.bin", WPLS2, P%
 \ ******************************************************************************
 
 ORG $CCE0
+
+GUARD $CE00
 
 .LLX30
 
