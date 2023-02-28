@@ -89,7 +89,7 @@ To play the flicker-free version of Commodore Plus/4 Elite, you can either downl
 
 * [Download flicker-free Commodore Plus/4 Elite as a .prg file](https://github.com/markmoxon/c64-elite-flicker-free/raw/master/flicker-free-disks/elite_+4_flicker_free.prg) - this is the best version to use for emulators and real machines
 
-* [Play Commodore Plus/4 Elite in your browser](http://plus4world.powweb.com/play/elite_+4_flicker_free) - this is the quickest way to get playing
+* [Play Commodore Plus/4 Elite in your browser](http://plus4world.powweb.com/play/elite_+4_flicker_free_pi) - this is the quickest way to get playing
 
 The PRG file has been tested in the [VICE emulator](https://vice-emu.sourceforge.io) and the [YAPE emulator](http://yape.homeserver.hu/). It should also work on real machines.
 
