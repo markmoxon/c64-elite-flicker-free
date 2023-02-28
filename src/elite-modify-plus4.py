@@ -89,9 +89,9 @@ print("[ Read    ] elite_+4_unpacked.prg")
 # Set the addresses for the extra routines (LLX30, PATCH1, PATCH2) that we will
 # load into unused portiong of the main game code
 
-llx30 = 0x7100
-patch1 = 0x713E
-patch2 = 0x7155
+llx30 = 0x7200
+patch1 = 0x723E
+patch2 = 0x7255
 
 # We now modify the code to implement flicker-free ship drawing. The code
 # changes are described here, which can be read alongside the following:
@@ -304,27 +304,24 @@ insert_binary_file(data_block, 0xA15B + 0x900, "ll78-plus4.bin")
 insert_binary_file(data_block, 0xA178 + 0x900, "ll155-plus4.bin")
 
 # We now load the three extra routines required by the modifications into the
-# memory used by the Trumble sprites, which are not used in the Plus/4 version:
+# memory used by the explosion and Trumble sprites, which are not used in the
+# Plus/4 version:
 #
 #   LLX30
 #   PATCH1
 #   PATCH2
-#
-#   PATCH3
-#   PATCH4
-#   PATCH5
-#   PATCH6
+#   DrawPlanetLine
 
-insert_binary_file(data_block, 0x7100, "extra-plus4.bin")
+insert_binary_file(data_block, 0x7200, "extra-plus4.bin")
 
 # We now move on to the routines for drawing flicker-free planets
 
 # Set the addresses for the extra routines (EraseRestOfPlanet, PATCH4, PATCH5)
 # that we inserted above
 
-erasep = 0x715B
-patch4 = 0x7229
-patch5 = 0x722E
+erasep = 0x89BC
+patch4 = 0x1EA0
+patch5 = 0x1EA5
 
 # PL9 (Part 1 of 3)
 #
@@ -357,7 +354,12 @@ insert_bytes(data_block, 0x7DE2 + 0x8F0, [
 #
 # We have already assembled the modified WPLS2 in BeebAsm and saved it as
 # the binary file wpls2.bin, so now we drop this over the top of the
-# existing routine (which is quite a bit longer, so there is room).
+# existing routine. This binary contains the following routines:
+#
+#   WPLS2
+#   EraseRestOfPlanet
+#   PATCH3
+#   PATCH6
 
 insert_binary_file(data_block, 0x80BB + 0x8F0, "wpls2-plus4.bin")
 
@@ -410,6 +412,17 @@ insert_nops(data_block, 0x8061 + 0x8F0, 1)
 # which contains the spill-over).
 
 insert_binary_file(data_block, 0x2974, "bline-plus4.bin")
+
+# We now load the extra routines required by the modifications into the memory
+# used by the Trumble sprite-drawing routine, which contains a whole raft of
+# NOPs in the Plus/4 version. We can therefore slip the following routines into
+# this set of NOPs, adding a JMP beforehand to skip over the patches:
+#
+#   DrawNewPlanetLine
+#   PATCH4
+#   PATCH5
+
+insert_binary_file(data_block, 0x1E6A, "trumble-plus4.bin")
 
 # All the modifications are done, so write the output file for the modified PRG
 

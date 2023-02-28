@@ -535,6 +535,81 @@ GUARD $80F5 + $08F0
  JMP WP1                \ Reset the ball line heap and return from the
                         \ subroutine using a tail call
 
+\ ******************************************************************************
+\
+\       Name: EraseRestOfPlanet
+\       Type: Subroutine
+\   Category: Drawing lines
+\    Summary: Draw all remaining lines in the ball line heap to erase the rest
+\             of the old planet
+\
+\ ******************************************************************************
+
+.EraseRestOfPlanet
+
+ LDY XX14               \ Set Y to the offset in XX14, which points to the part
+                        \ of the heap that we are overwriting with new points
+
+ CPY XX14+1             \ If XX14 >= XX14+1, then we have already redrawn all of
+ BCS eras1              \ the lines from the old circle's ball line heap, so
+                        \ skip the following
+
+ JSR DrawPlanetLine     \ Erase the next planet line from the ball line heap
+
+ JMP EraseRestOfPlanet  \ Loop back for the next line in the ball line heap
+
+.eras1
+
+ RTS                    \ Return from the subroutine
+
+\ ******************************************************************************
+\
+\       Name: BLINE
+\       Type: Subroutine
+\   Category: Drawing circles
+\    Summary: Draw a circle segment and add it to the ball line heap
+\
+\ ******************************************************************************
+
+.PATCH3
+
+                        \ These are the instructions from the end of BLINE that
+                        \ we move here so there's room for the patch
+
+ LDA K6+2               \
+ STA K5+2               \   * K5(3 2) = screen y-coordinate of this point
+ LDA K6+3               \
+ STA K5+3               \ They now become the "previous point" in the next call
+
+ LDA CNT                \ Set CNT = CNT + STP
+ CLC
+ ADC STP
+ STA CNT
+
+ RTS                    \ Return from the subroutine
+
+\ ******************************************************************************
+\
+\       Name: PL9 (Part 1 of 3)
+\       Type: Subroutine
+\   Category: Drawing planets
+\    Summary: Draw the planet, with either an equator and meridian, or a crater
+\
+\ ******************************************************************************
+
+.PATCH6
+
+ LDA TYPE               \ If the planet type is 128 then it has an equator and
+ CMP #128               \ a meridian, so this jumps to PL26 if this is not a
+ BNE P%+5               \ planet with an equator - in other words, if it is a
+                        \ planet with a crater
+
+ JMP PL9_2              \ Otherwise this is a planet with an equator and
+                        \ meridian, so jump to the equator routine in part 2 of
+                        \ PL9
+
+ JMP PL26               \ Jump to the crater routine
+
 SAVE "wpls2-plus4.bin", WPLS2, P%
 
 \ ******************************************************************************
@@ -546,7 +621,7 @@ SAVE "wpls2-plus4.bin", WPLS2, P%
 \
 \ ******************************************************************************
 
-ORG $7100
+ORG $7200
 
 GUARD $7300
 
@@ -701,33 +776,6 @@ GUARD $7300
 
 \ ******************************************************************************
 \
-\       Name: EraseRestOfPlanet
-\       Type: Subroutine
-\   Category: Drawing lines
-\    Summary: Draw all remaining lines in the ball line heap to erase the rest
-\             of the old planet
-\
-\ ******************************************************************************
-
-.EraseRestOfPlanet
-
- LDY XX14               \ Set Y to the offset in XX14, which points to the part
-                        \ of the heap that we are overwriting with new points
-
- CPY XX14+1             \ If XX14 >= XX14+1, then we have already redrawn all of
- BCS eras1              \ the lines from the old circle's ball line heap, so
-                        \ skip the following
-
- JSR DrawPlanetLine     \ Erase the next planet line from the ball line heap
-
- JMP EraseRestOfPlanet  \ Loop back for the next line in the ball line heap
-
-.eras1
-
- RTS                    \ Return from the subroutine
-
-\ ******************************************************************************
-\
 \       Name: DrawPlanetLine
 \       Type: Subroutine
 \   Category: Drawing lines
@@ -854,6 +902,28 @@ GUARD $7300
 
  RTS                    \ Return from the subroutine
 
+SAVE "extra-plus4.bin", LLX30, P%
+
+\ ******************************************************************************
+\
+\       Name: Put patches into NOPs in Trumble code
+\       Type: Subroutine
+\
+\ ******************************************************************************
+
+ORG $1E6A
+
+GUARD $1EB6
+
+.TRUMBLE
+
+ JMP PATCHEND           \ We inject the following into the batch of NOPs that
+                        \ the Plus/4 version has inserted into the middle of the
+                        \ Trumble sprite-plotting routine, so this instruction
+                        \ just skips over the patches so the routine can still
+                        \ run (the Trumble routine does not have an entry point
+                        \ within the NOPs, so this is safe)
+
 \ ******************************************************************************
 \
 \       Name: DrawNewPlanetLine
@@ -913,32 +983,6 @@ GUARD $7300
 
 \ ******************************************************************************
 \
-\       Name: BLINE
-\       Type: Subroutine
-\   Category: Drawing circles
-\    Summary: Draw a circle segment and add it to the ball line heap
-\
-\ ******************************************************************************
-
-.PATCH3
-
-                        \ These are the instructions from the end of BLINE that
-                        \ we move here so there's room for the patch
-
- LDA K6+2               \
- STA K5+2               \   * K5(3 2) = screen y-coordinate of this point
- LDA K6+3               \
- STA K5+3               \ They now become the "previous point" in the next call
-
- LDA CNT                \ Set CNT = CNT + STP
- CLC
- ADC STP
- STA CNT
-
- RTS                    \ Return from the subroutine
-
-\ ******************************************************************************
-\
 \       Name: PLS22
 \       Type: Subroutine
 \   Category: Drawing planets
@@ -986,27 +1030,6 @@ GUARD $7300
 
  RTS                    \ Return from the subroutine
 
-\ ******************************************************************************
-\
-\       Name: PL9 (Part 1 of 3)
-\       Type: Subroutine
-\   Category: Drawing planets
-\    Summary: Draw the planet, with either an equator and meridian, or a crater
-\
-\ ******************************************************************************
+.PATCHEND
 
-.PATCH6
-
- LDA TYPE               \ If the planet type is 128 then it has an equator and
- CMP #128               \ a meridian, so this jumps to PL26 if this is not a
- BNE P%+5               \ planet with an equator - in other words, if it is a
-                        \ planet with a crater
-
- JMP PL9_2              \ Otherwise this is a planet with an equator and
-                        \ meridian, so jump to the equator routine in part 2 of
-                        \ PL9
-
- JMP PL26               \ Jump to the crater routine
-
-SAVE "extra-plus4.bin", LLX30, P%
-
+SAVE "trumble-plus4.bin", TRUMBLE, P%
