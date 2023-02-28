@@ -89,9 +89,9 @@ print("[ Read    ] elite_+4_unpacked.prg")
 # Set the addresses for the extra routines (LLX30, PATCH1, PATCH2) that we will
 # load into unused portiong of the main game code
 
-llx30 = 0x7240
-patch1 = 0x727E
-patch2 = 0x7295
+llx30 = 0x7100
+patch1 = 0x713E
+patch2 = 0x7155
 
 # We now modify the code to implement flicker-free ship drawing. The code
 # changes are described here, which can be read alongside the following:
@@ -309,8 +309,107 @@ insert_binary_file(data_block, 0xA178 + 0x900, "ll155-plus4.bin")
 #   LLX30
 #   PATCH1
 #   PATCH2
+#
+#   PATCH3
+#   PATCH4
+#   PATCH5
+#   PATCH6
 
-insert_binary_file(data_block, 0x7240, "extra-plus4.bin")
+insert_binary_file(data_block, 0x7100, "extra-plus4.bin")
+
+# We now move on to the routines for drawing flicker-free planets
+
+# Set the addresses for the extra routines (EraseRestOfPlanet, PATCH4, PATCH5)
+# that we inserted above
+
+erasep = 0x715B
+patch4 = 0x7229
+patch5 = 0x722E
+
+# PL9 (Part 1 of 3)
+#
+# We have already assembled the modified part 1 of PL9 in BeebAsm and saved
+# it as the binary file pl9.bin, so now we drop this over the top of the
+# existing routine (the new routine is slightly bigger, so it ends by jumping
+# to PATCH6, which contains the spill-over).
+
+insert_binary_file(data_block, 0x7D8C + 0x8F0, "pl9-plus4.bin")
+
+# PL9 (Part 2 of 3)
+#
+# The above modification moves PL20, so we need to modify the branch instruction
+# at the start of part 2 of PL9.
+
+insert_bytes(data_block, 0x7DA8 + 0x8F0, [
+    0x90, 0xEB                          # BCC PL20
+])
+
+# PL9 (Part 3 of 3)
+#
+# The above modification moves PL20, so we need to modify the branch instruction
+# at the start of part 3 of PL9.
+
+insert_bytes(data_block, 0x7DE2 + 0x8F0, [
+    0x30, 0xB1                          # BMI PL20
+])
+
+# WPLS2
+#
+# We have already assembled the modified WPLS2 in BeebAsm and saved it as
+# the binary file wpls2.bin, so now we drop this over the top of the
+# existing routine (which is quite a bit longer, so there is room).
+
+insert_binary_file(data_block, 0x80BB + 0x8F0, "wpls2-plus4.bin")
+
+# PLS22
+#
+# This is the modification on either side of PL40, with the label moving two
+# bytes backwards to accommodate the modified code.
+#
+# From: BCS PL40
+#       ...
+#       STA CNT2
+#       JMP PLL4
+#      .PL40
+#       RTS
+#
+# To:   BCS PL40
+#       ...
+#       JMP PATCH4
+#      .PL40
+#       JMP EraseRestOfPlanet
+
+insert_bytes(data_block, 0x7F04 + 0x8F0, [
+    0xB0, 0x0A                          # BCS PL40
+])
+insert_bytes(data_block, 0x7F0D + 0x8F0, [
+    0x4C, patch4 % 256, patch4 // 256,  # JMP PATCH4
+    0x4C, erasep % 256, erasep // 256   # JMP EraseRestOfPlanet
+])
+
+# CIRCLE2
+#
+# This is the modification at the start of the routine.
+#
+# From: LDX #&FF
+#       STX FLAG
+#
+# To:   JSR PATCH5
+#       NOP
+
+insert_bytes(data_block, 0x805E + 0x8F0, [
+    0x20, patch5 % 256, patch5 // 256   # JSR PATCH5
+])
+insert_nops(data_block, 0x8061 + 0x8F0, 1)
+
+# BLINE
+#
+# We have already assembled the modified BLINE in BeebAsm and saved it as the
+# binary file bline.bin, so now we drop this over the top of the existing
+# routine (the new routine is slightly bigger, so it ends by jumping to PATCH3,
+# which contains the spill-over).
+
+insert_binary_file(data_block, 0x2974, "bline-plus4.bin")
 
 # All the modifications are done, so write the output file for the modified PRG
 
