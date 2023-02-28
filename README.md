@@ -8,7 +8,9 @@ This repository contains a patched version of Commodore 64 Elite that drasticall
 
 * If you are interested in building and applying the patch yourself, see the section on [building the patch](#building-the-patch).
 
-The ship-drawing code in the patch has been backported from the BBC Master version of Elite, so this part is 100% Bell & Braben code that's making its first appearance on the Commodore 64. The improved planet-drawing code is by Mark Moxon, and takes the same algorithm and applies it to the planets, with additional code to reduce flicker even further.
+The ship-drawing code in the patch has been backported from the BBC Master version of Elite, so this part is 100% Bell & Braben code that's making its first appearance on the Commodore 64. The improved planet-drawing code is by Mark Moxon, and takes the same algorithm and applies it to the planets, with additional code to reduce flicker even further. The algorithm is not perfect - planets still flicker slightly when partially off-screen, for example - but it is a big improvement on the original, very flickery release.
+
+To see the flicker-free planets in all their glory, I recommend you enable detailed planets by pausing the game, pressing "P" (you will hear a confirmation beep), and unpausing. Planets will then have craters, meridians and equators... though note that this does slow things down a bit, which is why it is disabled by default.
 
 You can see the difference it makes in the following clip. The patched version is on the left, and the original version is on the right:
 
@@ -79,6 +81,8 @@ All these images have been tested in the [VICE emulator](https://vice-emu.source
 
 The disk images are based on the GMA86 release of Elite from 1986, so saved commander files should work in exactly the same way as in the original GMA86 version. The only changes in the patch are graphical, and they don't affect gameplay in any way.
 
+To see the flicker-free planets in all their glory, I recommend you enable detailed planets by pausing the game, pressing "P" (you will hear a confirmation beep), and unpausing. Planets will then have craters, meridians and equators... though note that this does slow things down a bit, which is why it is disabled by default. You can pause the game with INST/DEL and unpause it with <- (which are typically mapped to backspace and End in emulators like VICE).
+
 ## Playing flicker-free Commodore Plus/4 Elite
 
 To play the flicker-free version of Commodore Plus/4 Elite, you can either download a PRG file and load it into an emulator or a real machine, or you can play it online in your browser:
@@ -90,6 +94,8 @@ To play the flicker-free version of Commodore Plus/4 Elite, you can either downl
 The PRG file has been tested in the [VICE emulator](https://vice-emu.sourceforge.io) and the [YAPE emulator](http://yape.homeserver.hu/). It should also work on real machines.
 
 The Plus/4 version is based on Pigmy's release, so saved commander files should work in exactly the same way as in the original. The only changes in the patch are graphical, and they don't affect gameplay in any way.
+
+To see the flicker-free planets in all their glory, I recommend you enable detailed planets by pausing the game, pressing "P" (you will hear a confirmation beep), and unpausing. Planets will then have craters, meridians and equators... though note that this does slow things down a bit, which is why it is disabled by default. You can pause the game with INST/DEL and unpause it with <- (which are typically mapped to backspace and Home in emulators like VICE).
 
 ## How the patch works
 
@@ -127,7 +133,7 @@ To find out more about the above steps, take a look at the following files, whic
 
 * The [`elite-modify.py`](src/elite-modify.py) script modifies the game binaries and applies the patch. It does this by:
 
-  * Loading each binary into memory (gma4, gma5 and gma6)
+  * Loading each binary into memory in turn (gma4, gma5 and gma6)
   * Decrypting it
   * Patching it by injecting the output from BeebAsm and making a number of other modifications to the code
   * Encrypting the modified code
@@ -142,11 +148,15 @@ The Commodore Plus/4 version of Elite is an unofficial release of the game that 
 
 The patching process follows a similar set of steps to the Commodore 64 version, but it operates on a game binary that's already been extracted from Pigmy's original version (thank you to [@Kekule1025](https://twitter.com/Kekule1025) for doing this, and for packing the final game up after I'd done my patching). You can access the unencrypted game using a monitor or debugger, by setting an execution breakpoint for address $5100 and loading the original Pigmy version; when the breakpoint is hit, the game will be unencrypted in memory from address $1100 onwards. This is the version that the patch scripts work with.
 
-The game runs at a different address to the Commodore 64 version, so the [`elite-flicker-free-plus4.asm`](src/elite-flicker-free-plus4.asm) and [`elite-modify-plus4.py`](src/elite-modify-plus4.py) files modify the code in different places to the Commodore 64 version. Most (though not all) routines run at addresses that are $0900 higher in memory than their Commodore 64 counterparts, so that's why you can see `+ $0900` throughout these files.
+The game runs at a different address to the Commodore 64 version, so the [`elite-flicker-free-plus4.asm`](src/elite-flicker-free-plus4.asm) and [`elite-modify-plus4.py`](src/elite-modify-plus4.py) files modify the code in different places to the Commodore 64 version. Most (though not all) routines run at addresses that are $0900 higher in memory than their Commodore 64 counterparts, so that's why you can see the likes of `+ $08F0` and `+ $0900` throughout these files.
 
-Also, because the Pigmy version comes with a demo loading screen that takes up a fair amount of extra memory, we can't just tack the flicker-free routines onto the end of the game binary, as we do in the Commodore 64 version. Instead we can put them in the spite area, and specifically over the top of the two Trumble sprites, which are not used in the Plus/4 version (the Plus/4 does contain Trumbles, but because the machine does not support hardware sprites, they do not appear on-screen, so the sprite definitions are unused and we can use the space to store the flicker-free routines).
+Also, because the Pigmy version comes with a demo loading screen that takes up a fair amount of extra memory, we can't just tack the flicker-free routines onto the end of the game binary, as we do in the Commodore 64 version. Instead we can put them in the spite area, and specifically over the top of the two Trumble sprites and the explosion sprite, which are not used in the Plus/4 version. The Plus/4 does contain Trumbles, but because the machine does not support hardware sprites, they do not appear on-screen, so the sprite definitions are unused and we can use the space to store the flicker-free routines.
 
-The build process for the Plus/4 creates a file called `elite_+4_modified.prg` in the `work` folder that contains the modified game (you can load this into an emulator, and run it with a `SYS 20736` command, as the game code starts at $5100). The downloadable version is wrapped in Pigmy's original demo and packing code, which is a process that is out of the scope of this site (I don't know how [@Kekule1025](https://twitter.com/Kekule1025) did it!).
+However, we can't use the entire sprite area for the flicker-free patch, as the laser sight sprite definitions are still used; they aren't used as sprites, but are instead poked directly into screen memory to change the laser sights for the four types of laser. Reusing the first part of the sprite area for the flicker-free patch would therefore corrupt the laser sights, so we can only overwrite the explosion and Trumble sprites.
+
+It turns out that this isn't quite enough space for the flicker-free planet code, so to add these routines, we have to look further afield. Luckily the Plus/4 version contains a long string of NOPs in the heart of the routine that plots the Trumble sprites on-screen, and no code jumps into these NOPs, so we can stick a JMP instruction at the start of this section, followed by the remainder of the patch routines. We also need to pack some more patch routines into the space after our patched WPLS2 routine, which is a lot shorter than in the original, and therefore has room for three of the smaller patch routines. It's a bit like a patchwork jigsaw puzzle, but it fits... just. You can see all these shenanigans in the [`elite-flicker-free-plus4.asm`](src/elite-flicker-free-plus4.asm) and [`elite-modify-plus4.py`](src/elite-modify-plus4.py) files.
+
+The build process for the Plus/4 creates a file called `elite_+4_modified.prg` in the `work` folder that contains the modified game (you can load this into an emulator, and run it with a `SYS 20736` command, as the game code starts at $5100). The downloadable version is wrapped in an updated version of Pigmy's original demo and packing code, which is a process that is out of the scope of this site (to be honest, I don't know how [@Kekule1025](https://twitter.com/Kekule1025) did it - you'll have to ask them!).
 
 Apart from these differences, the patching process is the same as for the Commodore 64 version.
 
