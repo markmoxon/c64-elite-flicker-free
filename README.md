@@ -81,7 +81,7 @@ All these images have been tested in the [VICE emulator](https://vice-emu.source
 
 The disk images are based on the GMA86 release of Elite from 1986, so saved commander files should work in exactly the same way as in the original GMA86 version. The only changes in the patch are graphical, and they don't affect gameplay in any way.
 
-To see the flicker-free planets in all their glory, I recommend you enable detailed planets by pausing the game, pressing "P" (you will hear a confirmation beep), and unpausing. Planets will then have craters, meridians and equators... though note that this does slow things down a bit, which is why it is disabled by default. You can pause the game with INST/DEL and unpause it with <- (which are typically mapped to backspace and End in emulators like VICE).
+To see the flicker-free planets in all their glory, I recommend you enable detailed planets by pausing the game, pressing "P" (you will hear a confirmation beep), and unpausing. Planets will then have craters, meridians and equators... though note that this does slow things down a bit, which is why it is disabled by default. You can pause the game with INST/DEL and unpause it with <- (which are typically mapped to backspace and Home in emulators like VICE).
 
 ## Playing flicker-free Commodore Plus/4 Elite
 
