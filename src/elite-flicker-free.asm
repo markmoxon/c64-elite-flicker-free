@@ -889,8 +889,8 @@ GUARD $CE00
 
 .nlin1
 
-                        \ If we get here then the old line is differnt to the new
-                        \ line, so we draw them both
+                        \ If we get here then the old line is different to the
+                        \ new line, so we draw them both
 
  JSR LL30               \ Draw the new line from (X1, Y1) to (X2, Y2)
 
