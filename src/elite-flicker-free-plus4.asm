@@ -19,7 +19,7 @@
 \
 \ ******************************************************************************
 
-GUARD &CE00             \ Guard against assembling over memory used by game
+ GUARD &CE00            \ Guard against assembling over memory used by game
 
 \ ******************************************************************************
 \
@@ -41,48 +41,48 @@ GUARD &CE00             \ Guard against assembling over memory used by game
 \
 \ ******************************************************************************
 
-XX1     = $0009         \ Variables for flicker-free ships
-INWK    = $0009
-XX19    = $002A
-K3      = $0035
-K4      = $0043
-XX0     = $0057
-V       = $005B
-XX15    = $006B
-X1      = $006B
-Y1      = $006C
-X2      = $006D
-Y2      = $006E
-XX12    = $0071
-XX17    = $009F
-CNT     = $00AA
-XX4     = $00AD
-XX20    = $00AE
-XX14    = $00FB
-PROJ    = $7D1F + $08F0
-LL75    = $9FB8 + $0900
-LL30    = $AB91 + $090C
-Y       = 72
+ XX1    = $0009         \ Variables for flicker-free ships
+ INWK   = $0009
+ XX19   = $002A
+ K3     = $0035
+ K4     = $0043
+ XX0    = $0057
+ V      = $005B
+ XX15   = $006B
+ X1     = $006B
+ Y1     = $006C
+ X2     = $006D
+ Y2     = $006E
+ XX12   = $0071
+ XX17   = $009F
+ CNT    = $00AA
+ XX4    = $00AD
+ XX20   = $00AE
+ XX14   = $00FB
+ PROJ   = $7D1F + $08F0
+ LL75   = $9FB8 + $0900
+ LL30   = $AB91 + $090C
+ Y      = 72
 
-K       = $0077         \ Variables for flicker-free planets
-LSP     = $007E
-K5      = $0085
-K6      = $0089
-XX13    = $00A2
-TYPE    = $00A5
-FLAG    = $00A9
-CNT2    = $00AB
-STP     = $00AC
-T       = $00BB
-SWAP    = $06F4
-LSX2    = $26A4 - 3
-LSY2    = $27A4 - 3
-PL9_2   = $7DA4 + $08F0
-PL26    = $7DE0 + $08F0
-PLL4    = $7E5F + $08F0
-CIRCLE  = $8044 + $08F0
-WP1     = $80F5 + $08F0
-LL145   = $A013 + $0900
+ K      = $0077         \ Variables for flicker-free planets
+ LSP    = $007E
+ K5     = $0085
+ K6     = $0089
+ XX13   = $00A2
+ TYPE   = $00A5
+ FLAG   = $00A9
+ CNT2   = $00AB
+ STP    = $00AC
+ T      = $00BB
+ SWAP   = $06F4
+ LSX2   = $26A4 - 3
+ LSY2   = $27A4 - 3
+ PL9_2  = $7DA4 + $08F0
+ PL26   = $7DE0 + $08F0
+ PLL4   = $7E5F + $08F0
+ CIRCLE = $8044 + $08F0
+ WP1    = $80F5 + $08F0
+ LL145  = $A013 + $0900
 
 \ ******************************************************************************
 \
@@ -93,7 +93,7 @@ LL145   = $A013 + $0900
 \
 \ ******************************************************************************
 
-ORG $9932 + $0900
+ ORG $9932 + $0900
 
 .SHPPT
 
@@ -167,7 +167,7 @@ ORG $9932 + $0900
                         \ corresponding old line from the screen, and return
                         \ from the subroutine using a tail call
 
-SAVE "shppt-plus4.bin", SHPPT, P%
+ SAVE "shppt-plus4.bin", SHPPT, P%
 
 \ ******************************************************************************
 \
@@ -179,7 +179,7 @@ SAVE "shppt-plus4.bin", SHPPT, P%
 \
 \ ******************************************************************************
 
-ORG $A15B + $0900
+ ORG $A15B + $0900
 
 .LL78
 
@@ -215,7 +215,7 @@ ORG $A15B + $0900
 
  NOP
 
-SAVE "ll78-plus4.bin", LL78, P%
+ SAVE "ll78-plus4.bin", LL78, P%
 
 \ ******************************************************************************
 \
@@ -227,7 +227,7 @@ SAVE "ll78-plus4.bin", LL78, P%
 \
 \ ******************************************************************************
 
-ORG $A178 + $0900
+ ORG $A178 + $0900
 
 .LL155
 
@@ -281,7 +281,7 @@ ORG $A178 + $0900
 
  RTS                    \ Return from the subroutine
 
-SAVE "ll155-plus4.bin", LL155, P%
+ SAVE "ll155-plus4.bin", LL155, P%
 
 \ ******************************************************************************
 \
@@ -292,9 +292,9 @@ SAVE "ll155-plus4.bin", LL155, P%
 \
 \ ******************************************************************************
 
-ORG $2977 - 3
+ ORG $2977 - 3
 
-GUARD $2A12 - 3
+ GUARD $2A12 - 3
 
 .BLINE
 
@@ -456,7 +456,7 @@ GUARD $2A12 - 3
  JMP PATCH3             \ Jump to patch to implement the commented out
                         \ instructions above, plus the rest of the routine
 
-SAVE "bline-plus4.bin", BLINE, P%
+ SAVE "bline-plus4.bin", BLINE, P%
 
 \ ******************************************************************************
 \
@@ -467,9 +467,9 @@ SAVE "bline-plus4.bin", BLINE, P%
 \
 \ ******************************************************************************
 
-ORG $7D8C + $08F0
+ ORG $7D8C + $08F0
 
-GUARD $7DA4 + $08F0
+ GUARD $7DA4 + $08F0
 
 .PL9
 
@@ -501,7 +501,7 @@ GUARD $7DA4 + $08F0
 
  JMP PATCH6             \ Jump to PATCH6 for the rest of the routine
 
-SAVE "pl9-plus4.bin", PL9, P%
+ SAVE "pl9-plus4.bin", PL9, P%
 
 \ ******************************************************************************
 \
@@ -512,9 +512,9 @@ SAVE "pl9-plus4.bin", PL9, P%
 \
 \ ******************************************************************************
 
-ORG $80BB + $08F0
+ ORG $80BB + $08F0
 
-GUARD $80F5 + $08F0
+ GUARD $80F5 + $08F0
 
 .WPLS2
 
@@ -610,7 +610,7 @@ GUARD $80F5 + $08F0
 
  JMP PL26               \ Jump to the crater routine
 
-SAVE "wpls2-plus4.bin", WPLS2, P%
+ SAVE "wpls2-plus4.bin", WPLS2, P%
 
 \ ******************************************************************************
 \
@@ -621,9 +621,9 @@ SAVE "wpls2-plus4.bin", WPLS2, P%
 \
 \ ******************************************************************************
 
-ORG $7200
+ ORG $7200
 
-GUARD $7300
+ GUARD $7300
 
 .LLX30
 
@@ -902,7 +902,7 @@ GUARD $7300
 
  RTS                    \ Return from the subroutine
 
-SAVE "extra-plus4.bin", LLX30, P%
+ SAVE "extra-plus4.bin", LLX30, P%
 
 \ ******************************************************************************
 \
@@ -911,9 +911,9 @@ SAVE "extra-plus4.bin", LLX30, P%
 \
 \ ******************************************************************************
 
-ORG $1E6A
+ ORG $1E6A
 
-GUARD $1EB6
+ GUARD $1EB6
 
 .TRUMBLE
 
@@ -1032,4 +1032,4 @@ GUARD $1EB6
 
 .PATCHEND
 
-SAVE "trumble-plus4.bin", TRUMBLE, P%
+ SAVE "trumble-plus4.bin", TRUMBLE, P%

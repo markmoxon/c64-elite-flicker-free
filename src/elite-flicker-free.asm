@@ -19,7 +19,7 @@
 \
 \ ******************************************************************************
 
-GUARD $CE00             \ Guard against assembling over memory used by game
+ GUARD $CE00            \ Guard against assembling over memory used by game
 
 \ ******************************************************************************
 \
@@ -41,48 +41,48 @@ GUARD $CE00             \ Guard against assembling over memory used by game
 \
 \ ******************************************************************************
 
-XX1     = $0009         \ Variables for flicker-free ships
-INWK    = $0009
-XX19    = $002A
-K3      = $0035
-K4      = $0043
-XX0     = $0057
-V       = $005B
-XX15    = $006B
-X1      = $006B
-Y1      = $006C
-X2      = $006D
-Y2      = $006E
-XX12    = $0071
-XX17    = $009F
-CNT     = $00AA
-XX4     = $00AD
-XX20    = $00AE
-XX14    = $00FB
-PROJ    = $7D1F
-LL75    = $9FB8
-LL30    = $AB91
-Y       = 72
+ XX1    = $0009         \ Variables for flicker-free ships
+ INWK   = $0009
+ XX19   = $002A
+ K3     = $0035
+ K4     = $0043
+ XX0    = $0057
+ V      = $005B
+ XX15   = $006B
+ X1     = $006B
+ Y1     = $006C
+ X2     = $006D
+ Y2     = $006E
+ XX12   = $0071
+ XX17   = $009F
+ CNT    = $00AA
+ XX4    = $00AD
+ XX20   = $00AE
+ XX14   = $00FB
+ PROJ   = $7D1F
+ LL75   = $9FB8
+ LL30   = $AB91
+ Y      = 72
 
-K       = $0077         \ Variables for flicker-free planets
-LSP     = $007E
-K5      = $0085
-K6      = $0089
-XX13    = $00A2
-TYPE    = $00A5
-FLAG    = $00A9
-CNT2    = $00AB
-STP     = $00AC
-T       = $00BB
-SWAP    = $06F4
-LSX2    = $26A4
-LSY2    = $27A4
-PL9_2   = $7DA4
-PL26    = $7DE0
-PLL4    = $7E5F
-CIRCLE  = $8044
-WP1     = $80F5
-LL145   = $A013
+ K      = $0077         \ Variables for flicker-free planets
+ LSP    = $007E
+ K5     = $0085
+ K6     = $0089
+ XX13   = $00A2
+ TYPE   = $00A5
+ FLAG   = $00A9
+ CNT2   = $00AB
+ STP    = $00AC
+ T      = $00BB
+ SWAP   = $06F4
+ LSX2   = $26A4
+ LSY2   = $27A4
+ PL9_2  = $7DA4
+ PL26   = $7DE0
+ PLL4   = $7E5F
+ CIRCLE = $8044
+ WP1    = $80F5
+ LL145  = $A013
 
 \ ******************************************************************************
 \
@@ -93,7 +93,7 @@ LL145   = $A013
 \
 \ ******************************************************************************
 
-ORG $9932
+ ORG $9932
 
 .SHPPT
 
@@ -167,7 +167,7 @@ ORG $9932
                         \ corresponding old line from the screen, and return
                         \ from the subroutine using a tail call
 
-SAVE "shppt.bin", SHPPT, P%
+ SAVE "shppt.bin", SHPPT, P%
 
 \ ******************************************************************************
 \
@@ -179,7 +179,7 @@ SAVE "shppt.bin", SHPPT, P%
 \
 \ ******************************************************************************
 
-ORG $A15B
+ ORG $A15B
 
 .LL78
 
@@ -215,7 +215,7 @@ ORG $A15B
 
  NOP
 
-SAVE "ll78.bin", LL78, P%
+ SAVE "ll78.bin", LL78, P%
 
 \ ******************************************************************************
 \
@@ -227,7 +227,7 @@ SAVE "ll78.bin", LL78, P%
 \
 \ ******************************************************************************
 
-ORG $A178
+ ORG $A178
 
 .LL155
 
@@ -281,7 +281,7 @@ ORG $A178
 
  RTS                    \ Return from the subroutine
 
-SAVE "ll155.bin", LL155, P%
+ SAVE "ll155.bin", LL155, P%
 
 \ ******************************************************************************
 \
@@ -292,9 +292,9 @@ SAVE "ll155.bin", LL155, P%
 \
 \ ******************************************************************************
 
-ORG $2977
+ ORG $2977
 
-GUARD $2A12
+ GUARD $2A12
 
 .BLINE
 
@@ -456,7 +456,7 @@ GUARD $2A12
  JMP PATCH3             \ Jump to patch to implement the commented out
                         \ instructions above, plus the rest of the routine
 
-SAVE "bline.bin", BLINE, P%
+ SAVE "bline.bin", BLINE, P%
 
 \ ******************************************************************************
 \
@@ -467,9 +467,9 @@ SAVE "bline.bin", BLINE, P%
 \
 \ ******************************************************************************
 
-ORG $7D8C
+ ORG $7D8C
 
-GUARD $7DA4
+ GUARD $7DA4
 
 .PL9
 
@@ -501,7 +501,7 @@ GUARD $7DA4
 
  JMP PATCH6             \ Jump to PATCH6 for the rest of the routine
 
-SAVE "pl9.bin", PL9, P%
+ SAVE "pl9.bin", PL9, P%
 
 \ ******************************************************************************
 \
@@ -512,9 +512,9 @@ SAVE "pl9.bin", PL9, P%
 \
 \ ******************************************************************************
 
-ORG $80BB
+ ORG $80BB
 
-GUARD $80F5
+ GUARD $80F5
 
 .WPLS2
 
@@ -535,7 +535,7 @@ GUARD $80F5
  JMP WP1                \ Reset the ball line heap and return from the
                         \ subroutine using a tail call
 
-SAVE "wpls2.bin", WPLS2, P%
+ SAVE "wpls2.bin", WPLS2, P%
 
 \ ******************************************************************************
 \
@@ -546,9 +546,9 @@ SAVE "wpls2.bin", WPLS2, P%
 \
 \ ******************************************************************************
 
-ORG $CCE0
+ ORG $CCE0
 
-GUARD $CE00
+ GUARD $CE00
 
 .LLX30
 
@@ -911,7 +911,7 @@ GUARD $CE00
 
  RTS                    \ Return from the subroutine
 
-SAVE "extra.bin", LLX30, P%
+ SAVE "extra.bin", LLX30, P%
 
 \ ******************************************************************************
 \
@@ -922,9 +922,9 @@ SAVE "extra.bin", LLX30, P%
 \
 \ ******************************************************************************
 
-ORG $69C0
+ ORG $69C0
 
-GUARD $6A00             \ Guard against assembling over memory used by game
+ GUARD $6A00             \ Guard against assembling over memory used by game
 
 .PATCH3
 
@@ -1014,4 +1014,4 @@ GUARD $6A00             \ Guard against assembling over memory used by game
 
  JMP PL26               \ Jump to the crater routine
 
-SAVE "extra2.bin", PATCH3, P%
+ SAVE "extra2.bin", PATCH3, P%
