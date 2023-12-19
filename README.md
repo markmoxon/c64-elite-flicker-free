@@ -1,5 +1,7 @@
 # Flicker-free Elite on the Commodore 64 and Plus/4
 
+[BBC Micro cassette Elite](https://github.com/markmoxon/cassette-elite-beebasm) | [BBC Micro disc Elite](https://github.com/markmoxon/disc-elite-beebasm) | [6502 Second Processor Elite](https://github.com/markmoxon/6502sp-elite-beebasm) | [BBC Master Elite](https://github.com/markmoxon/master-elite-beebasm) | [Acorn Electron Elite](https://github.com/markmoxon/electron-elite-beebasm) | [NES Elite](https://github.com/markmoxon/nes-elite-beebasm) | [Elite-A](https://github.com/markmoxon/elite-a-beebasm) | [Teletext Elite](https://github.com/markmoxon/teletext-elite) | [Elite universe Editor](https://github.com/markmoxon/elite-universe-editor) | **Flicker-free C64 Elite**
+
 This repository contains a patched version of Commodore 64 Elite that drastically improves the quality of the graphics. It does this by removing most (but not all) of the flicker from the ship-drawing and planet-drawing routines. It also contains a patched version for the Commodore Plus/4.
 
 * To play the flicker-free version, see the sections on [playing flicker-free Commodore 64 Elite](#playing-flicker-free-commodore-64-elite) and [playing flicker-free Commodore Plus/4 Elite](#playing-flicker-free-commodore-plus4-elite).
