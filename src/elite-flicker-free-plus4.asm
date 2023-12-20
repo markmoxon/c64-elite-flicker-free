@@ -908,8 +908,10 @@
 
 ; ******************************************************************************
 ;
-;       Name: Put patches into NOPs in Trumble code
+;       Name: TRUMBLE
 ;       Type: Subroutine
+;   Category: Drawing lines
+;    Summary: Put patches into NOPs in Trumble code
 ;
 ; ******************************************************************************
 
