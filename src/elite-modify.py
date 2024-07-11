@@ -9,7 +9,7 @@
 # This script applies flicker-free ship-drawing to Commodore 64 Elite, as
 # described here:
 #
-# https://www.bbcelite.com/deep_dives/flicker-free_ship_drawing.html
+# https://elite.bbcelite.com/deep_dives/flicker-free_ship_drawing.html
 #
 # It does the following:
 #
@@ -145,7 +145,7 @@ patch2 = 0xCD35
 # We now modify the code to implement flicker-free ship drawing. The code
 # changes are described here, which can be read alongside the following:
 #
-# https://www.bbcelite.com/deep_dives/backporting_the_flicker-free_algorithm.html
+# https://elite.bbcelite.com/deep_dives/backporting_the_flicker-free_algorithm.html
 #
 # The addresses in the following are from when the game binary is loaded into
 # memory. They were calculated by analysing a memory dump of the running game,
