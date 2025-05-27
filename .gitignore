@@ -19,5 +19,5 @@ $RECYCLE.BIN/
 *.lnk
 
 # Project files
-.vscode/tasks.json
+.vscode/
 work/
