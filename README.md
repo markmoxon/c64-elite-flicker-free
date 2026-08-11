@@ -129,7 +129,7 @@ Note that this fix doesn't apply to Elite on Z80-based computers, such as the ZX
 
 Planet flicker is also improved by this patch. Planets use a completely different set of drawing routines to ships, but I have applied the same improved algorithm to the ball line heap, and have added logic that ensures we only erase and redraw lines that move. Planets do still flicker a bit, especially when they are partially off-screen, but there is still a big improvement over the original.
 
-For more information on flicker-free Elite, see the [hacks section of the accompanying website](https://elite.bbcelite.com/hacks/flicker-free_elite.html).
+For more information on flicker-free Elite, see the [hacks section of the accompanying website](https://elite.bbcelite.com/hacks/flicker-free_elite/).
 
 ### The patching process
 
@@ -158,7 +158,7 @@ To find out more about the above steps, take a look at the following files, whic
   * Saving out the encrypted and modified binary
   * Disabling any copy protection from the original disk
 
-The commentary in these files is best read alongside the code changes, which are described in the article on [technical information for flicker-free Elite](https://elite.bbcelite.com/hacks/flicker-free_elite_technical_information.html).
+The commentary in these files is best read alongside the code changes, which are described in the article on [technical information for flicker-free Elite](https://elite.bbcelite.com/hacks/flicker-free_elite/technical_information.html).
 
 ### Patching the Commodore Plus/4 version
 
