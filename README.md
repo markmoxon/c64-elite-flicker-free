@@ -89,9 +89,9 @@ My hope is that the educational and non-profit intentions of this repository wil
 
 To play the flicker-free version of Commodore 64 Elite, you need to download a disk image and load it into an emulator or a real machine. Just like the original game, the flicker-free version is available in two distinct flavours: PAL and NTSC.
 
-* [Download flicker-free Commodore 64 Elite (PAL) as a d64 disk image](https://github.com/markmoxon/c64-elite-flicker-free/raw/master/flicker-free-disks/c64-elite-flicker-free-pal.d64) - this is the best version to use for emulators and most European machines
+* [Download flicker-free Commodore 64 Elite (PAL) as a d64 disk image](https://github.com/markmoxon/c64-elite-flicker-free/raw/main/flicker-free-disks/c64-elite-flicker-free-pal.d64) - this is the best version to use for emulators and most European machines
 
-* [Download flicker-free Commodore 64 Elite (NTSC) as a d64 disk image](https://github.com/markmoxon/c64-elite-flicker-free/raw/master/flicker-free-disks/c64-elite-flicker-free-ntsc.d64) - this is the best version to use for most machines from the Americas
+* [Download flicker-free Commodore 64 Elite (NTSC) as a d64 disk image](https://github.com/markmoxon/c64-elite-flicker-free/raw/main/flicker-free-disks/c64-elite-flicker-free-ntsc.d64) - this is the best version to use for most machines from the Americas
 
 [See here](http://unusedino.de/ec64/technical/misc/vic656x/pal-ntsc.html) for a brief technical summary on the differences between PAL and NTSC on the Commodore 64.
 
