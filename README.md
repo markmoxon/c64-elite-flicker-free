@@ -105,7 +105,7 @@ To see the flicker-free planets in all their glory, I recommend you enable detai
 
 To play the flicker-free version of Commodore Plus/4 Elite, you can either download a PRG file and load it into an emulator or a real machine, or you can play it online in your browser:
 
-* [Download flicker-free Commodore Plus/4 Elite as a .prg file](https://github.com/markmoxon/c64-elite-flicker-free/raw/master/flicker-free-disks/elite_+4_flicker_free.prg) - this is the best version to use for emulators and real machines
+* [Download flicker-free Commodore Plus/4 Elite as a .prg file](https://github.com/markmoxon/c64-elite-flicker-free/raw/main/flicker-free-disks/elite_+4_flicker_free.prg) - this is the best version to use for emulators and real machines
 
 * [Play Commodore Plus/4 Elite in your browser](http://plus4world.powweb.com/play/elite_+4_flicker_free_pi) - this is the quickest way to get playing
 
