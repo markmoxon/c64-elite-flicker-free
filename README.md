@@ -184,7 +184,7 @@ Apart from these differences, the patching process is the same as for the Commod
 
 If you want to apply the flicker-free patch to Commodore 64 Elite yourself, or you just want to explore the patching process in more detail, then you will need the following:
 
-* A Mac or Linux box. The process may work on the Windows Subsystem for Linux, but I haven't tested it.
+* A Mac or Linux box. The process may work on the Windows Subsystem for Linux or coreutils for Windows, but I haven't tested it.
 
 * BeebAsm, which can be downloaded from the [BeebAsm repository](https://github.com/stardot/beebasm). You will have to build your own executable with `make code`.
 
